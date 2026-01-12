@@ -1,377 +1,464 @@
-import React, { useState } from 'react';
-import { 
-  Menu, 
-  X, 
-  Radio, 
-  Cpu, 
-  Smartphone, 
-  Brain, 
-  Mail, 
-  ShieldCheck, 
-  Activity, 
-  Server,
-  MapPin,
-  ChevronRight,
-  ArrowRight
-} from 'lucide-react';
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cybaz Solutions</title>
 
-const CybazWebsite = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  const navigation = [
-    { name: 'Services', href: '#services' },
-    { name: 'Expertise', href: '#expertise' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  <!-- Optional: nicer font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  const services = [
-    {
-      title: 'RF Engineering',
-      description: '20+ years of specialized experience in RF code, design, and system testing. Bridging hardware constraints with software flexibility.',
-      icon: Radio,
-      color: 'text-blue-500'
-    },
-    {
-      title: 'AI Transformation',
-      description: 'Helping Phoenix-area businesses pivot to an "AI First" strategy. We implement practical AI solutions to automate and optimize workflows.',
-      icon: Brain,
-      color: 'text-purple-500'
-    },
-    {
-      title: 'Gov & Infrastructure',
-      description: '10+ years delivering high-reliability UI and software infrastructure for small businesses, cities, and federal government contracts.',
-      icon: Server,
-      color: 'text-slate-500'
-    },
-    {
-      title: 'Mobile Development',
-      description: 'Native and cross-platform application development for Android and iOS. Custom apps tailored to your business logic.',
-      icon: Smartphone,
-      color: 'text-green-500'
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 selection:bg-blue-100">
+
+  <div id="root"></div>
+
+  <!-- React (CDN) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel (so we can write JSX in-browser) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Lucide (CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function Icon({ name, className = "", size = 24 }) {
+      const ref = React.useRef(null);
+
+      useEffect(() => {
+        if (ref.current && window.lucide) {
+          ref.current.innerHTML = window.lucide.icons[name]?.toSvg({ width: size, height: size, class: className }) || "";
+        }
+      }, [name, className, size]);
+
+      return <span ref={ref} aria-hidden="true" className="inline-flex leading-none" />;
     }
-  ];
 
-  const stats = [
-    { label: 'RF Experience', value: '20+ Years' },
-    { label: 'Gov/UI Projects', value: '10+ Years' },
-    { label: 'Location', value: 'Phoenix, AZ' },
-    { label: 'Focus', value: 'AI First' },
-  ];
+    function CybazWebsite() {
+      const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-100">
-      
-      {/* Navigation */}
-      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
-            <div className="flex-shrink-0 flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Cpu className="text-white w-5 h-5" />
-              </div>
-              <span className="font-bold text-xl tracking-tight text-slate-900">
-                CYBAZ<span className="text-blue-600">SOLUTIONS</span>
-              </span>
-            </div>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex space-x-8 items-center">
-              {navigation.map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
-                  className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
-                >
-                  {item.name}
+      const navigation = [
+        { name: "Services", href: "#services" },
+        { name: "Expertise", href: "#expertise" },
+        { name: "About", href: "#about" },
+        { name: "Contact", href: "#contact" },
+      ];
+
+      const services = [
+        {
+          title: "RF Engineering",
+          description:
+            "20+ years of specialized experience in RF code, design, and system testing. Bridging hardware constraints with software flexibility.",
+          icon: "radio",
+          color: "text-blue-500",
+        },
+        {
+          title: "AI Transformation",
+          description:
+            'Helping Phoenix-area businesses pivot to an "AI First" strategy. We implement practical AI solutions to automate and optimize workflows.',
+          icon: "brain",
+          color: "text-purple-500",
+        },
+        {
+          title: "Gov & Infrastructure",
+          description:
+            "10+ years delivering high-reliability UI and software infrastructure for small businesses, cities, and federal government contracts.",
+          icon: "server",
+          color: "text-slate-500",
+        },
+        {
+          title: "Mobile Development",
+          description:
+            "Native and cross-platform application development for Android and iOS. Custom apps tailored to your business logic.",
+          icon: "smartphone",
+          color: "text-green-500",
+        },
+      ];
+
+      const stats = [
+        { label: "RF Experience", value: "20+ Years" },
+        { label: "Gov/UI Projects", value: "10+ Years" },
+        { label: "Location", value: "Phoenix, AZ" },
+        { label: "Focus", value: "AI First" },
+      ];
+
+      const year = new Date().getFullYear();
+
+      return (
+        <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-100">
+          {/* Navigation */}
+          <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between h-20 items-center">
+                <a href="#" className="flex-shrink-0 flex items-center gap-2">
+                  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <Icon name="cpu" className="text-white" size={20} />
+                  </div>
+                  <span className="font-bold text-xl tracking-tight text-slate-900">
+                    CYBAZ<span className="text-blue-600">SOLUTIONS</span>
+                  </span>
                 </a>
-              ))}
-              <a 
-                href="#contact"
-                className="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20"
-              >
-                Get in Touch
-              </a>
-            </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-slate-500 hover:text-slate-700 focus:outline-none p-2"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-slate-100 absolute w-full">
-            <div className="px-4 pt-2 pb-6 space-y-1 shadow-xl">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <a 
-                href="#contact"
-                className="block mt-4 text-center bg-blue-600 text-white px-3 py-3 rounded-lg font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact Us
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        {/* Abstract Background Element */}
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl opacity-70 animate-pulse" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide mb-6">
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-              Accepting New Contracts
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-              Engineering the Future of <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">RF, Software & AI</span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              We provide expert contracting for mission-critical RF systems, government infrastructure, and AI-driven business transformation in the Phoenix area.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="#contact" className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30">
-                Discuss Your Project
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-              <a href="#services" className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-all">
-                View Capabilities
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Bar */}
-      <div className="border-y border-slate-200 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">{stat.value}</div>
-                <div className="text-sm text-slate-500 font-medium uppercase tracking-wider">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Core Competencies</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-              Technical Solutions for Complex Problems
-            </p>
-            <p className="mt-4 max-w-2xl text-xl text-slate-500 mx-auto">
-              From low-level RF code to high-level AI strategies.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group">
-                <div className={`w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <service.icon className={`w-7 h-7 ${service.color}`} />
+                {/* Desktop Menu */}
+                <div className="hidden md:flex space-x-8 items-center">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                  <a
+                    href="#contact"
+                    className="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20"
+                  >
+                    Get in Touch
+                  </a>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed text-sm">
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Expertise & Authority Section */}
-      <section id="expertise" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 text-blue-600 font-semibold mb-4">
-                <ShieldCheck className="w-5 h-5" />
-                <span>Proven Reliability</span>
+                {/* Mobile menu button */}
+                <div className="md:hidden">
+                  <button
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="text-slate-500 hover:text-slate-700 focus:outline-none p-2"
+                    aria-label="Toggle menu"
+                  >
+                    {isMenuOpen ? (
+                      <Icon name="x" className="text-slate-700" size={24} />
+                    ) : (
+                      <Icon name="menu" className="text-slate-700" size={24} />
+                    )}
+                  </button>
+                </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Decades of Experience in High-Stakes Environments
-              </h2>
-              <div className="space-y-6 text-lg text-slate-600">
-                <p>
-                  At Cybaz Solutions, we don't just write code; we engineer systems. With a background deeply rooted in Radio Frequency (RF) fields, we understand the rigorous demands of hardware interaction, system testing, and signal processing.
-                </p>
-                <p>
-                  Our portfolio includes critical work with Federal Government agencies and City municipalities, ensuring that UI and software infrastructure is secure, accessible, and robust.
-                </p>
-                <p className="font-medium text-slate-900">
-                  Now, we are bringing this enterprise-grade discipline to small businesses in Phoenix, empowering them with AI-first strategies.
-                </p>
+            </div>
+
+            {/* Mobile Menu Dropdown */}
+            {isMenuOpen && (
+              <div className="md:hidden bg-white border-t border-slate-100 absolute w-full">
+                <div className="px-4 pt-2 pb-6 space-y-1 shadow-xl">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                  <a
+                    href="#contact"
+                    className="block mt-4 text-center bg-blue-600 text-white px-3 py-3 rounded-lg font-medium"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Contact Us
+                  </a>
+                </div>
               </div>
-              
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {['System Design', 'Signal Processing', 'Compliance', 'UI/UX for Gov'].map((item) => (
-                  <div key={item} className="flex items-center gap-2 text-slate-700">
-                    <Activity className="w-4 h-4 text-blue-500" />
-                    {item}
+            )}
+          </nav>
+
+          {/* Hero Section */}
+          <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            {/* Abstract Background Element */}
+            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl opacity-70 animate-pulse" />
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide mb-6">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                  Accepting New Contracts
+                </div>
+
+                <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
+                  Engineering the Future of <br className="hidden md:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    RF, Software & AI
+                  </span>
+                </h1>
+
+                <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                  We provide expert contracting for mission-critical RF systems, government infrastructure, and
+                  AI-driven business transformation in the Phoenix area.
+                </p>
+
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30"
+                  >
+                    Discuss Your Project
+                    <span className="ml-2 inline-flex">
+                      <Icon name="arrow-right" className="text-white" size={20} />
+                    </span>
+                  </a>
+
+                  <a
+                    href="#services"
+                    className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-all"
+                  >
+                    View Capabilities
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Stats Bar */}
+          <div className="border-y border-slate-200 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
+                {stats.map((stat, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">{stat.value}</div>
+                    <div className="text-sm text-slate-500 font-medium uppercase tracking-wider">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
-            
-            <div className="mt-12 lg:mt-0 relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl transform rotate-3 opacity-10"></div>
-              <div className="bg-slate-900 rounded-2xl p-8 text-white relative shadow-2xl">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                    <MapPin className="text-blue-400 w-6 h-6" />
+          </div>
+
+          {/* Services Section */}
+          <section id="services" className="py-20 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Core Competencies</h2>
+                <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                  Technical Solutions for Complex Problems
+                </p>
+                <p className="mt-4 max-w-2xl text-xl text-slate-500 mx-auto">
+                  From low-level RF code to high-level AI strategies.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {services.map((service, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <Icon name={service.icon} className={service.color} size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+                    <p className="text-slate-600 leading-relaxed text-sm">{service.description}</p>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-lg">Local Partner</h3>
-                    <p className="text-slate-400 text-sm">Based in Phoenix, Arizona</p>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Expertise & Authority Section */}
+          <section id="expertise" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div>
+                  <div className="inline-flex items-center gap-2 text-blue-600 font-semibold mb-4">
+                    <Icon name="shield-check" className="text-blue-600" size={20} />
+                    <span>Proven Reliability</span>
+                  </div>
+
+                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                    Decades of Experience in High-Stakes Environments
+                  </h2>
+
+                  <div className="space-y-6 text-lg text-slate-600">
+                    <p>
+                      At Cybaz Solutions, we don't just write code; we engineer systems. With a background deeply rooted
+                      in Radio Frequency (RF) fields, we understand the rigorous demands of hardware interaction,
+                      system testing, and signal processing.
+                    </p>
+                    <p>
+                      Our portfolio includes critical work with Federal Government agencies and City municipalities,
+                      ensuring that UI and software infrastructure is secure, accessible, and robust.
+                    </p>
+                    <p className="font-medium text-slate-900">
+                      Now, we are bringing this enterprise-grade discipline to small businesses in Phoenix, empowering
+                      them with AI-first strategies.
+                    </p>
+                  </div>
+
+                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {["System Design", "Signal Processing", "Compliance", "UI/UX for Gov"].map((item) => (
+                      <div key={item} className="flex items-center gap-2 text-slate-700">
+                        <Icon name="activity" className="text-blue-500" size={16} />
+                        {item}
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <div className="space-y-6">
-                  <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                    <h4 className="font-semibold text-blue-300 mb-2">Government & Federal</h4>
-                    <p className="text-sm text-slate-300">Experience adhering to strict federal standards for software and UI accessibility.</p>
-                  </div>
-                  <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                    <h4 className="font-semibold text-purple-300 mb-2">RF & Hardware</h4>
-                    <p className="text-sm text-slate-300">Deep understanding of the physical layer, coding for devices, and comprehensive system testing.</p>
+
+                <div className="mt-12 lg:mt-0 relative">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl transform rotate-3 opacity-10"></div>
+
+                  <div className="bg-slate-900 rounded-2xl p-8 text-white relative shadow-2xl">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                        <Icon name="map-pin" className="text-blue-400" size={24} />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-lg">Local Partner</h3>
+                        <p className="text-slate-400 text-sm">Based in Phoenix, Arizona</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                        <h4 className="font-semibold text-blue-300 mb-2">Government & Federal</h4>
+                        <p className="text-sm text-slate-300">
+                          Experience adhering to strict federal standards for software and UI accessibility.
+                        </p>
+                      </div>
+                      <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                        <h4 className="font-semibold text-purple-300 mb-2">RF & Hardware</h4>
+                        <p className="text-sm text-slate-300">
+                          Deep understanding of the physical layer, coding for devices, and comprehensive system testing.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* App Portfolio Teaser */}
-      <section className="py-20 bg-slate-900 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Smartphone className="w-12 h-12 text-blue-500 mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Custom Mobile Applications</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto mb-10 text-lg">
-            We build high-performance iOS and Android applications. <br/>
-            Full portfolio of proprietary apps coming soon.
-          </p>
-          <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
-            <div className="px-6 py-2 bg-slate-900 rounded-full text-sm font-medium text-blue-200">
-              Dev & Freelance Available
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-blue-50 rounded-3xl p-8 md:p-12 text-center border border-blue-100">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Ready to Optimize Your Systems?</h2>
-            <p className="text-slate-600 mb-8 max-w-xl mx-auto">
-              Whether you need RF expertise, government-grade UI infrastructure, or an AI strategy for your Phoenix business, Cybaz Solutions delivers.
-            </p>
-            
-            <div className="flex flex-col md:flex-row justify-center gap-6 items-center">
-              <a 
-                href="mailto:info@cybazsolutions.com"
-                className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all w-full md:w-auto"
-              >
-                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                  <Mail className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+              {/* Optional About anchor (you had it in nav) */}
+              <div id="about" className="mt-20">
+                <div className="max-w-3xl mx-auto text-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900">About Cybaz Solutions</h2>
+                  <p className="mt-4 text-slate-600">
+                    We help organizations ship reliable systems—combining RF domain expertise with modern software and practical AI.
+                  </p>
                 </div>
-                <div className="text-left">
-                  <p className="text-xs text-slate-500 font-semibold uppercase">General Inquiries</p>
-                  <p className="text-slate-900 font-medium">info@cybazsolutions.com</p>
-                </div>
-              </a>
-
-              <a 
-                href="mailto:support@cybazsolutions.com"
-                className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-purple-300 hover:shadow-md transition-all w-full md:w-auto"
-              >
-                <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center group-hover:bg-purple-600 transition-colors">
-                  <Activity className="w-5 h-5 text-purple-600 group-hover:text-white transition-colors" />
-                </div>
-                <div className="text-left">
-                  <p className="text-xs text-slate-500 font-semibold uppercase">Technical Support</p>
-                  <p className="text-slate-900 font-medium">support@cybazsolutions.com</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <Cpu className="text-blue-600 w-6 h-6" />
-                <span className="font-bold text-lg text-slate-900">CYBAZ SOLUTIONS</span>
               </div>
-              <p className="text-slate-500 max-w-xs text-sm">
-                Empowering businesses with RF engineering expertise, robust software infrastructure, and AI-first strategies.
+            </div>
+          </section>
+
+          {/* App Portfolio Teaser */}
+          <section className="py-20 bg-slate-900 text-white overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+              <div className="mx-auto mb-6 w-12 h-12 flex items-center justify-center">
+                <Icon name="smartphone" className="text-blue-500" size={48} />
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Custom Mobile Applications</h2>
+              <p className="text-slate-400 max-w-2xl mx-auto mb-10 text-lg">
+                We build high-performance iOS and Android applications. <br />
+                Full portfolio of proprietary apps coming soon.
               </p>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-4">Services</h4>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li>RF System Design</li>
-                <li>System Testing</li>
-                <li>Mobile App Dev</li>
-                <li>AI Consulting</li>
-              </ul>
-            </div>
 
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-4">Contact</h4>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li>Phoenix, Arizona</li>
-                <li>info@cybazsolutions.com</li>
-                <li>support@cybazsolutions.com</li>
-              </ul>
+              <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
+                <div className="px-6 py-2 bg-slate-900 rounded-full text-sm font-medium text-blue-200">
+                  Dev & Freelance Available
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-400 text-sm">
-              &copy; {new Date().getFullYear()} Cybaz Solutions. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm text-slate-500">
-              <a href="#" className="hover:text-slate-900">Privacy Policy</a>
-              <a href="#" className="hover:text-slate-900">Terms of Service</a>
+          </section>
+
+          {/* Contact Section */}
+          <section id="contact" className="py-24 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-blue-50 rounded-3xl p-8 md:p-12 text-center border border-blue-100">
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Ready to Optimize Your Systems?</h2>
+                <p className="text-slate-600 mb-8 max-w-xl mx-auto">
+                  Whether you need RF expertise, government-grade UI infrastructure, or an AI strategy for your Phoenix business,
+                  Cybaz Solutions delivers.
+                </p>
+
+                <div className="flex flex-col md:flex-row justify-center gap-6 items-center">
+                  <a
+                    href="mailto:info@cybazsolutions.com"
+                    className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all w-full md:w-auto"
+                  >
+                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                      <Icon name="mail" className="text-blue-600 group-hover:text-white" size={20} />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-xs text-slate-500 font-semibold uppercase">General Inquiries</p>
+                      <p className="text-slate-900 font-medium">info@cybazsolutions.com</p>
+                    </div>
+                  </a>
+
+                  <a
+                    href="mailto:support@cybazsolutions.com"
+                    className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-purple-300 hover:shadow-md transition-all w-full md:w-auto"
+                  >
+                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center group-hover:bg-purple-600 transition-colors">
+                      <Icon name="activity" className="text-purple-600 group-hover:text-white" size={20} />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-xs text-slate-500 font-semibold uppercase">Technical Support</p>
+                      <p className="text-slate-900 font-medium">support@cybazsolutions.com</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div className="col-span-1 md:col-span-2">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Icon name="cpu" className="text-blue-600" size={24} />
+                    <span className="font-bold text-lg text-slate-900">CYBAZ SOLUTIONS</span>
+                  </div>
+                  <p className="text-slate-500 max-w-xs text-sm">
+                    Empowering businesses with RF engineering expertise, robust software infrastructure, and AI-first strategies.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-slate-900 mb-4">Services</h4>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li>RF System Design</li>
+                    <li>System Testing</li>
+                    <li>Mobile App Dev</li>
+                    <li>AI Consulting</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-slate-900 mb-4">Contact</h4>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li>Phoenix, Arizona</li>
+                    <li>info@cybazsolutions.com</li>
+                    <li>support@cybazsolutions.com</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p className="text-slate-400 text-sm">&copy; {year} Cybaz Solutions. All rights reserved.</p>
+                <div className="flex gap-6 text-sm text-slate-500">
+                  <a href="#" className="hover:text-slate-900">Privacy Policy</a>
+                  <a href="#" className="hover:text-slate-900">Terms of Service</a>
+                </div>
+              </div>
+            </div>
+          </footer>
         </div>
-      </footer>
-    </div>
-  );
-};
+      );
+    }
 
-export default CybazWebsite;
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<CybazWebsite />);
+  </script>
+</body>
+</html>

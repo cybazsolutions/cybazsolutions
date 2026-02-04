@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mug Monitor - Unofficial Companion App</title>
+    <meta name="description" content="Mug Monitor: Background monitoring, reliable alerts, and visual pulsing for your smart mug.">
+    <!-- Using Phosphor Icons for a clean look similar to Material Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --primary-color: #d32f2f; /* Ember-like red/orange or generic primary */
+            --primary-bg: #fff0f0;
+            --text-main: #1f2937;
+            --text-secondary: #4b5563;
+            --bg-color: #ffffff;
+            --card-bg: #f9fafb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+        }
+
+        .app-icon {
+            width: 128px;
+            height: 128px;
+            border-radius: 28px; /* Smooth rounded corners for icon */
+            margin-bottom: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: -webkit-linear-gradient(45deg, #d32f2f, #ff7043);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .icon-box {
+            background-color: var(--primary-bg);
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Screenshot / Visual Area */
+        .preview-section {
+            background-color: #f3f4f6;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .preview-box {
+            background: white;
+            padding: 10px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #e5e7eb;
+            /* Ensure the image fits nicely */
+            overflow: hidden; 
+        }
+
+        .preview-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .disclaimer p {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <!-- App Icon -->
+            <img src="MugMonitorIcon.png" alt="Mug Monitor App Icon" class="app-icon" onerror="this.style.display='none'">
+            
+            <h1>Welcome to<br>Mug Monitor</h1>
+            <p>The advanced companion app for your smart mug. Get reliable background monitoring, persistent notifications, and visual pulsing alerts.</p>
+            <a href="#" class="cta-button">Get it on Google Play</a>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                
+                <!-- Feature 1: Background Monitoring -->
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <i class="ph ph-bell-ringing"></i>
+                    </div>
+                    <h3>Background Monitoring</h3>
+                    <p>Mug Monitor runs a robust background service to keep track of your beverage. Premium users get a persistent silent notification showing live temperature, battery life, and current state.</p>
+                </div>
+
+                <!-- Feature 2: Reliable Alerts -->
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <i class="ph ph-bluetooth"></i>
+                    </div>
+                    <h3>Reliable Alerts</h3>
+                    <p>Our notification system is designed for stability. You'll know exactly when your drink is perfectly hot, even if your phone is in your pocket or the app is closed.</p>
+                </div>
+
+                <!-- Feature 3: Visual Pulsing -->
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <i class="ph ph-palette"></i>
+                    </div>
+                    <h3>Visual Pulsing</h3>
+                    <p>Don't just rely on your phone. Mug Monitor pulses your mug's LED in your personalized color when your drink is ready. See the status at a glance without unlocking your device.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Preview Section (Service Example) -->
+    <section class="preview-section">
+        <div class="container">
+            <h2>Stay Informed Instantly</h2>
+            <p style="margin-bottom: 30px; color: var(--text-secondary);">Live updates right in your notification shade.</p>
+            
+            <div class="preview-box">
+                <!-- Using the user's PNG file -->
+                <img src="service_example.png" alt="Mug Monitor Notification Preview" class="preview-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer">
+        <div class="container">
+            <p><strong>Notice of Non-Affiliation and Disclaimer:</strong></p>
+            <p>"Mug Monitor" is an unofficial companion app. It is not affiliated with, endorsed by, or connected to Ember Technologies, Inc. All product and company names are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Cybaz Solutions. All rights reserved.</p>
+            <div style="margin-top: 10px;">
+                <a href="./privacy.html">Privacy Policy</a>
+                <a href="mailto:support@cybazsolutions.com">Contact Support</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

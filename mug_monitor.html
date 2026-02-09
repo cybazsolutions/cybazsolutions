@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mug Monitor - Unofficial Companion App</title>
-    <meta name="description" content="Mug Monitor: Background monitoring, reliable alerts, and visual pulsing for your smart mug.">
-    <!-- Using Phosphor Icons for a clean look similar to Material Icons -->
+    <meta name="description" content="Mug Monitor: Background monitoring, reliable alerts, and visual pulsing for your smart mug. Available on Android and iOS.">
+    <!-- Using Phosphor Icons for a clean look -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
-            --primary-color: #d32f2f; /* Ember-like red/orange or generic primary */
+            --primary-color: #d32f2f; /* Ember-like red/orange */
             --primary-bg: #fff0f0;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
             --bg-color: #ffffff;
             --card-bg: #f9fafb;
+            --ios-blue: #007AFF;
+            --android-green: #3DDC84;
         }
 
         body {
@@ -27,7 +29,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -41,7 +43,7 @@
         .app-icon {
             width: 128px;
             height: 128px;
-            border-radius: 28px; /* Smooth rounded corners for icon */
+            border-radius: 28px;
             margin-bottom: 24px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
@@ -62,21 +64,44 @@
             margin: 0 auto 40px;
         }
 
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 16px 32px;
+        /* Store Buttons */
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
+            color: white;
+            min-width: 160px;
+            justify-content: center;
         }
 
-        .cta-button:hover {
+        .btn-android {
+            background-color: var(--text-main); /* Dark theme for buttons */
+        }
+        
+        .btn-ios {
+            background-color: #000000;
+        }
+
+        .store-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
+        }
+        
+        .store-btn i {
+            font-size: 1.5rem;
         }
 
         /* Features Section */
@@ -128,30 +153,78 @@
             margin: 0;
         }
 
-        /* Screenshot / Visual Area */
-        .preview-section {
+        /* Platform Showcase Section */
+        .showcase-section {
             background-color: #f3f4f6;
-            padding: 60px 0;
-            text-align: center;
+            padding: 80px 0;
         }
 
-        .preview-box {
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            margin-bottom: 10px;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .platform-col {
             background: white;
-            padding: 10px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            max-width: 400px;
-            margin: 0 auto;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
             border: 1px solid #e5e7eb;
-            /* Ensure the image fits nicely */
-            overflow: hidden; 
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-android {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-ios {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .platform-col h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .platform-col p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-size: 0.95rem;
         }
 
         .preview-image {
-            width: 100%;
+            max-width: 100%;
             height: auto;
-            display: block;
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            max-height: 400px;
+            object-fit: contain;
+            background-color: #000; /* Dark bg for screenshots looks good */
         }
 
         /* Disclaimer Section */
@@ -182,14 +255,18 @@
             text-decoration: none;
             margin: 0 10px;
             font-size: 0.9rem;
+            transition: color 0.2s;
         }
 
         footer a:hover {
             color: white;
         }
 
-        @media (max-width: 600px) {
+        /* Responsive */
+        @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
+            .platform-grid { grid-template-columns: 1fr; }
+            .preview-image { max-height: 300px; }
         }
     </style>
 </head>
@@ -201,9 +278,21 @@
             <!-- App Icon -->
             <img src="MugMonitorIcon.png" alt="Mug Monitor App Icon" class="app-icon" onerror="this.style.display='none'">
             
-            <h1>Welcome to<br>Mug Monitor</h1>
+            <h1>Mug Monitor</h1>
             <p>The advanced companion app for your smart mug. Get reliable background monitoring, persistent notifications, and visual pulsing alerts.</p>
-            <a href="#" class="cta-button">Get it on Google Play</a>
+            
+            <div class="store-buttons">
+                <!-- Android Link -->
+                <a href="#" class="store-btn btn-android">
+                    <i class="ph-fill ph-google-play-logo"></i>
+                    Google Play
+                </a>
+                <!-- iOS Dummy Link -->
+                <a href="#" class="store-btn btn-ios">
+                    <i class="ph-fill ph-app-store-logo"></i>
+                    App Store
+                </a>
+            </div>
         </div>
     </section>
 
@@ -217,8 +306,8 @@
                     <div class="icon-box">
                         <i class="ph ph-bell-ringing"></i>
                     </div>
-                    <h3>Background Monitoring</h3>
-                    <p>Mug Monitor runs a robust background service to keep track of your beverage. Premium users get a persistent silent notification showing live temperature, battery life, and current state.</p>
+                    <h3>Smart Monitoring</h3>
+                    <p>Mug Monitor runs robust background services to keep track of your beverage temperature, ensuring you never sip cold coffee again.</p>
                 </div>
 
                 <!-- Feature 2: Reliable Alerts -->
@@ -226,8 +315,8 @@
                     <div class="icon-box">
                         <i class="ph ph-bluetooth"></i>
                     </div>
-                    <h3>Reliable Alerts</h3>
-                    <p>Our notification system is designed for stability. You'll know exactly when your drink is perfectly hot, even if your phone is in your pocket or the app is closed.</p>
+                    <h3>Reliable Connectivity</h3>
+                    <p>Our notification system is designed for stability. Stay connected to your mug's status even when your phone is locked.</p>
                 </div>
 
                 <!-- Feature 3: Visual Pulsing -->
@@ -236,22 +325,39 @@
                         <i class="ph ph-palette"></i>
                     </div>
                     <h3>Visual Pulsing</h3>
-                    <p>Don't just rely on your phone. Mug Monitor pulses your mug's LED in your personalized color when your drink is ready. See the status at a glance without unlocking your device.</p>
+                    <p>Mug Monitor pulses your mug's LED in your personalized color when your drink is ready. See status at a glance.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Preview Section (Service Example) -->
-    <section class="preview-section">
+    <!-- Platform Showcase Section -->
+    <section class="showcase-section">
         <div class="container">
-            <h2>Stay Informed Instantly</h2>
-            <p style="margin-bottom: 30px; color: var(--text-secondary);">Live updates right in your notification shade.</p>
+            <div class="section-header">
+                <h2>Native Experiences</h2>
+                <p style="color: var(--text-secondary);">Optimized for both Android and iOS.</p>
+            </div>
             
-            <div class="preview-box">
-                <!-- Using the user's PNG file -->
-                <img src="service_example.png" alt="Mug Monitor Notification Preview" class="preview-image">
+            <div class="platform-grid">
+                
+                <!-- Android Showcase -->
+                <div class="platform-col">
+                    <span class="platform-badge badge-android">Android</span>
+                    <h3>Silent Notifications</h3>
+                    <p>Stay updated without the noise. View live temperature and battery status directly in your notification shade.</p>
+                    <img src="service_example.png" alt="Android Silent Notification" class="preview-image">
+                </div>
+
+                <!-- iOS Showcase -->
+                <div class="platform-col">
+                    <span class="platform-badge badge-ios">iOS</span>
+                    <h3>Live Activities</h3>
+                    <p>Track your brew from the Lock Screen. Live Activities keep your mug's temperature front and center.</p>
+                    <img src="LockScreen.png" alt="iOS Live Activity Lock Screen" class="preview-image">
+                </div>
+
             </div>
         </div>
     </section>
@@ -268,9 +374,11 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 Cybaz Solutions. All rights reserved.</p>
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 15px;">
                 <a href="./privacy.html">Privacy Policy</a>
-                <a href="mailto:support@cybazsolutions.com">Contact Support</a>
+                <span style="color: #4b5563;">|</span>
+                <!-- Support Link Updated -->
+                <a href="mailto:support@cybazsolutions.com">support@cybazsolutions.com</a>
             </div>
         </div>
     </footer>

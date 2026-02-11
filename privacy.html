@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Cybaz Solutions</title>
-    <meta name="description" content="Privacy Policy for Cybaz Solutions application regarding Bluetooth and Location permissions.">
+    <meta name="description" content="Privacy Policy for Cybaz Solutions application regarding Bluetooth and Location permissions for Android and iOS.">
     <style>
         :root {
             --primary-color: #2563eb;
@@ -60,6 +60,14 @@
             margin-top: 30px;
             margin-bottom: 15px;
             color: #111827;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #374151;
         }
 
         p {
@@ -128,7 +136,7 @@
         <div class="card">
             <header>
                 <h1>Privacy Policy</h1>
-                <p class="last-updated">Last Updated: February 4, 2026</p>
+                <p class="last-updated">Last Updated: February 11, 2026</p>
             </header>
 
             <section>
@@ -136,26 +144,34 @@
                     Cybaz Solutions built this application as a Free app. This SERVICE is provided by Cybaz Solutions at no cost and is intended for use as is.
                 </p>
                 <p>
-                    This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service.
+                    This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service on either Android or iOS platforms.
                 </p>
             </section>
 
             <section>
-                <h2>Bluetooth and Location Data</h2>
+                <h2>Device Permissions (Bluetooth & Location)</h2>
                 <p>
-                    To ensure the functionality of the application, we require specific permissions related to Bluetooth and Location Services.
+                    To ensure the functionality of the application, specifically to connect to your Ember Mug hardware, we require specific permissions on your mobile device.
                 </p>
                 
-                <!-- Explicit Declaration Required by Google Play Console -->
+                <!-- Explicit Declaration -->
                 <div class="highlight-box">
                     <p>
-                        "This app uses Bluetooth and Location Services solely to scan for and connect to your Ember Mug. We do not collect, store, or transmit your location data to any server."
+                        "This app uses Bluetooth and/or Location Services solely to scan for and connect to your Ember Mug locally. We do not collect, store, or transmit your physical location data to any external server."
                     </p>
                 </div>
 
+                <h3>Android Requirements</h3>
                 <p>
-                    <strong>Why is Location Permission needed?</strong><br>
-                    On the Android operating system, scanning for Bluetooth Low Energy (BLE) devices requires the "Location" permission, as BLE beacons can theoretically be used to determine a user's location. However, our application uses this permission strictly to locate your Bluetooth device nearby and does not use it for GPS tracking or mapping.
+                    <strong>Location Permission (Fine/Coarse):</strong> On the Android operating system (specifically Android 11 and lower), scanning for Bluetooth Low Energy (BLE) devices requires the "Location" permission. This is an operating system requirement because BLE beacons can theoretically be used to determine a user's location.
+                </p>
+                <p>
+                    <strong>Nearby Devices Permission:</strong> On Android 12 and higher, we utilize the "Nearby Devices" permission to scan for the mug without needing your physical location.
+                </p>
+
+                <h3>iOS Requirements</h3>
+                <p>
+                    <strong>Bluetooth Permission:</strong> On iOS, we explicitly request permission to access Bluetooth. This access is used exclusively to detect and communicate with your Ember Mug. iOS does not require Location services for this specific type of Bluetooth connection, and we do not request GPS access on iOS devices.
                 </p>
             </section>
 
@@ -165,10 +181,12 @@
                     For a better experience while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained on your device and is not collected by us in any way.
                 </p>
                 <p>
-                    The app does use third-party services that may collect information used to identify you.
+                    The app does use third-party services that may collect information used to identify you for the purpose of app stability and analytics.
                 </p>
+                <p>Links to privacy policy of third-party service providers used by the app:</p>
                 <ul>
                     <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
+                    <li><a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">Apple Services</a></li>
                 </ul>
             </section>
 

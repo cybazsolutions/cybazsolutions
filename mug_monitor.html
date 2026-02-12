@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mug Monitor - Unofficial Companion App</title>
+    <title>Mug Monitor - Unofficial Ember Companion App</title>
     <meta name="description" content="Mug Monitor: Background monitoring, reliable alerts, and visual pulsing for your smart mug. Available on Android and iOS.">
     
     <!-- Favicon Configuration: This sets the icon in the browser tab -->
@@ -231,10 +231,42 @@
             object-fit: contain;
             background-color: #000; /* Dark bg for screenshots looks good */
         }
+        
+        /* Story Section */
+        .story-section {
+            background-color: #ffffff;
+            padding: 40px 20px 60px;
+            text-align: center;
+        }
+        
+        .story-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .story-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+        
+        .story-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: inline-block;
+            opacity: 0.5;
+        }
 
         /* Disclaimer Section */
         .disclaimer {
-            background-color: #fff;
+            background-color: var(--card-bg);
             padding: 40px 20px;
             text-align: center;
             border-top: 1px solid #e5e7eb;
@@ -284,7 +316,7 @@
             <img src="MugMonitorIcon.png" alt="Mug Monitor App Icon" class="app-icon" onerror="this.style.display='none'">
             
             <h1>Mug Monitor</h1>
-            <p>The advanced companion app for your smart mug. Get reliable background monitoring, persistent notifications, and visual pulsing alerts.</p>
+            <p>The advanced companion app for your Ember mug. Get reliable background monitoring, persistent notifications, and visual pulsing alerts.</p>
             
             <div class="store-buttons">
                 <!-- Android Link -->
@@ -301,6 +333,17 @@
         </div>
     </section>
 
+    <!-- Our Story Section -->
+    <section class="story-section">
+        <div class="container story-content">
+            <i class="ph-fill ph-coffee quote-icon"></i>
+            <h2>How It Started</h2>
+            <p>
+                Mug Monitor started as a hobby project to solve a simple annoyance: I wanted to check my coffee's temperature at a glance without having to unlock my phone and launch an app. After perfecting the Android experience, I built the iOS version so my wife could enjoy the same convenience. Now, it's available for everyone who takes their hot beverage seriously.
+            </p>
+        </div>
+    </section>
+
     <!-- Features Grid -->
     <section class="features">
         <div class="container">
@@ -312,7 +355,7 @@
                         <i class="ph ph-bell-ringing"></i>
                     </div>
                     <h3>Smart Monitoring</h3>
-                    <p>Mug Monitor runs robust background services to keep track of your beverage temperature, ensuring you never sip cold coffee again.</p>
+                    <p>Visualize your drink's temperature instantly without opening the app. Through silent notifications and lock screen updates, Mug Monitor ensures your coffee or tea is never too hot or too cold.</p>
                 </div>
 
                 <!-- Feature 2: Reliable Alerts -->
@@ -321,7 +364,7 @@
                         <i class="ph ph-bluetooth"></i>
                     </div>
                     <h3>Reliable Connectivity</h3>
-                    <p>Our notification system is designed for stability. Stay connected to your mug's status even when your phone is locked.</p>
+                    <p>Engineered for persistence, the app actively handles Bluetooth reconnections and strives to maintain a long-term connection, ensuring you stay linked to your mug throughout the day.</p>
                 </div>
 
                 <!-- Feature 3: Visual Pulsing -->
@@ -330,7 +373,7 @@
                         <i class="ph ph-palette"></i>
                     </div>
                     <h3>Visual Pulsing</h3>
-                    <p>Mug Monitor pulses your mug's LED in your personalized color when your drink is ready. See status at a glance.</p>
+                    <p>Mug Monitor pulses your mug's LED in your personalized color when your drink is ready. See status at a glance—it helps visualize your drink is ready a little better than just the static white LED.</p>
                 </div>
 
             </div>
@@ -351,7 +394,7 @@
                 <div class="platform-col">
                     <span class="platform-badge badge-android">Android</span>
                     <h3>Silent Notifications</h3>
-                    <p>Stay updated without the noise. View live temperature and battery status directly in your notification shade.</p>
+                    <p>Quickly check your mug status. View live temperature and battery status directly in your notification shade.</p>
                     <img src="service_example.png" alt="Android Silent Notification" class="preview-image">
                 </div>
 

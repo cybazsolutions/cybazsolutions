@@ -264,6 +264,56 @@
             opacity: 0.5;
         }
 
+        /* Pricing Section */
+        .pricing-section {
+            background-color: #ffffff;
+            padding: 60px 20px;
+        }
+
+        .pricing-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .pricing-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .pricing-card h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .pricing-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .trial-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
         /* Disclaimer Section */
         .disclaimer {
             background-color: var(--card-bg);
@@ -406,6 +456,23 @@
                     <img src="LockScreen.png" alt="iOS Live Activity Lock Screen" class="preview-image">
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-card">
+                <i class="ph-fill ph-tag pricing-icon"></i>
+                <h2>Support the Developer</h2>
+                <p>
+                    The core app is completely <strong>free to download and use</strong>. There is a small charge for some of the advanced premium features (which helps cover ongoing development time and costs!), but you don't have to guess if it's worth it.
+                </p>
+                <div class="trial-badge">
+                    <i class="ph-fill ph-gift"></i>
+                    Enjoy a full 7-day free trial to test absolutely everything!
+                </div>
             </div>
         </div>
     </section>

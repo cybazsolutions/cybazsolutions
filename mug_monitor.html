@@ -69,44 +69,29 @@
             margin: 0 auto 40px;
         }
 
-        /* Store Buttons */
+        /* Store Badges */
         .store-buttons {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            align-items: center;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
-        .store-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            color: white;
-            min-width: 160px;
-            justify-content: center;
+        .store-badge-link {
+            display: inline-block;
+            transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
-        .btn-android {
-            background-color: var(--text-main); /* Dark theme for buttons */
-        }
-        
-        .btn-ios {
-            background-color: #000000;
-        }
-
-        .store-btn:hover {
+        .store-badge-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             opacity: 0.9;
         }
-        
-        .store-btn i {
-            font-size: 1.5rem;
+
+        .store-badge-img {
+            height: 54px; /* Standardize height for both badges */
+            width: auto;
+            display: block;
         }
 
         /* Features Section */
@@ -354,6 +339,7 @@
             .hero h1 { font-size: 2.5rem; }
             .platform-grid { grid-template-columns: 1fr; }
             .preview-image { max-height: 300px; }
+            .store-badge-img { height: 48px; } /* Slightly smaller badges on mobile */
         }
     </style>
 </head>
@@ -370,14 +356,12 @@
             
             <div class="store-buttons">
                 <!-- Android Link -->
-                <a href="https://play.google.com/store/apps/details?id=com.cybaz.coffee" class="store-btn btn-android">
-                    <i class="ph-fill ph-google-play-logo"></i>
-                    Google Play
+                <a href="https://play.google.com/store/apps/details?id=com.cybaz.coffee" class="store-badge-link" aria-label="Get it on Google Play">
+                    <img src="GetItOnGooglePlay.png" alt="Get it on Google Play" class="store-badge-img">
                 </a>
                 <!-- iOS Link -->
-                <a href="https://apps.apple.com/app/id6758961574" class="store-btn btn-ios">
-                    <i class="ph-fill ph-app-store-logo"></i>
-                    App Store
+                <a href="https://apps.apple.com/app/id6758961574" class="store-badge-link" aria-label="Download on the App Store">
+                    <img src="Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" class="store-badge-img">
                 </a>
             </div>
         </div>

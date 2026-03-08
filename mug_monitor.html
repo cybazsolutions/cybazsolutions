@@ -22,6 +22,7 @@
             --card-bg: #f9fafb;
             --ios-blue: #007AFF;
             --android-green: #3DDC84;
+            --tip-color: #ff813f; /* A friendly tip/coffee color */
         }
 
         body {
@@ -208,16 +209,16 @@
         }
 
         .preview-image {
-            display: block; /* Forces the image to stack vertically */
-            width: 100%; /* Ensures it fills its container width nicely */
+            display: block; 
+            width: 100%; 
             height: auto;
             border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            max-height: 400px;
-            object-fit: contain;
-            background-color: #000; /* Dark bg for screenshots looks good */
-            margin-left: auto;
-            margin-right: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+
+        .preview-image:last-child {
+            margin-bottom: 0;
         }
         
         /* Story Section */
@@ -252,7 +253,7 @@
             opacity: 0.5;
         }
 
-        /* Pricing Section */
+        /* Pricing & Tipping Section */
         .pricing-section {
             background-color: #ffffff;
             padding: 60px 20px;
@@ -300,6 +301,52 @@
             border-radius: 50px;
             font-weight: 600;
             font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .tip-divider {
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 0 auto 30px;
+            width: 80%;
+        }
+
+        .tip-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tip-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--tip-color);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(255, 129, 63, 0.2);
+        }
+
+        .tip-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(255, 129, 63, 0.3);
+            opacity: 0.9;
+        }
+
+        .tip-btn i {
+            font-size: 1.4rem;
+        }
+
+        .tip-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
         /* Disclaimer Section */
@@ -432,8 +479,8 @@
                     <span class="platform-badge badge-android">Android</span>
                     <h3>Silent Notifications & Wear OS</h3>
                     <p>Quickly check your mug status. View live temperature and battery status directly in your notification shade or natively on your wrist.</p>
-                    <img src="Silent.png" alt="Android Silent Notification" class="preview-image" style="margin-bottom: 20px;">
-                    <img src="WorksWithWearOS.png" alt="Works with Wear OS" class="preview-image">
+                    <img src="Silent.jpg" alt="Android Silent Notification" class="preview-image">
+                    <img src="WorksWithWearOS.jpg" alt="Works with Wear OS" class="preview-image">
                 </div>
 
                 <!-- iOS Showcase -->
@@ -460,6 +507,17 @@
                 <div class="trial-badge">
                     <i class="ph-fill ph-gift"></i>
                     Enjoy a full 7-day free trial to test absolutely everything!
+                </div>
+                
+                <div class="tip-divider"></div>
+                
+                <div class="tip-container">
+                    <p class="tip-text">Already love the app and want to say thanks? Tips are always deeply appreciated!</p>
+                    
+                    <a href="https://buy.stripe.com/eVqdR3fhE6lQ7ENggHg3600" target="_blank" class="tip-btn">
+                        <i class="ph-fill ph-coffee"></i>
+                        Tip the Developer
+                    </a>
                 </div>
             </div>
         </div>

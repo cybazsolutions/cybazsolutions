@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mug Monitor Support - iOS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // A nice modern teal/blue
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth animation for the native HTML details/summary accordion */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; margin-top: -10px}
+            100%  {opacity: 1; margin-top: 0px}
+        }
+        /* Custom plus/minus icon for summary */
+        summary::after {
+            content: '+';
+            float: right;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: #0d9488;
+            transition: transform 0.2s ease;
+        }
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased font-sans selection:bg-brand-100 selection:text-brand-900">
+
+    <div class="max-w-3xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 mb-4 shadow-sm">
+                <!-- Coffee Cup Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 13.5v5.25a3 3 0 003 3h9a3 3 0 003-3v-5.25M4.5 13.5L3 12m1.5 1.5l1.5-1.5m13.5 1.5l1.5-1.5m-1.5 1.5l-1.5-1.5" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Mug Monitor for iOS
+            </h1>
+            <p class="mt-4 text-lg text-gray-500">
+                Frequently Asked Questions & Troubleshooting
+            </p>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="space-y-4">
+
+            <!-- Connection Issues Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Connectivity Issues</h2>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    My app won't connect automatically or gives a "Can't Connect" error.
+                </summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Bluetooth connections can sometimes be stubborn, especially if there's competition for the signal. Please try the following steps to isolate the issue:</p>
+                    <ol class="list-decimal pl-5 space-y-3">
+                        <li><strong>Check for other connected devices:</strong> Is another phone or tablet currently paired to the mug and nearby? Sometimes the mug gets "grabbed" by another device's Bluetooth. If so, go into the Bluetooth settings on that <em>other</em> device and completely <strong>"Forget"</strong> the mug.</li>
+                        <li><strong>Official app interference:</strong> If opening the official Ember app establishes the connection immediately, it's possible that app is holding onto the Bluetooth signal in the background. Try force-closing the official app to see if Mug Monitor connects more reliably.</li>
+                        <li><strong>Forget and re-pair:</strong> If neither of those is the culprit, let's start fresh. Go to your iPhone's <strong>Settings > Bluetooth</strong>, find the mug in your list of devices, tap the "i" icon, and select <strong>Forget This Device</strong>. Open Mug Monitor and re-pair it from scratch.</li>
+                    </ol>
+                    <p class="pt-2 text-sm italic">Note: Make sure "Background Monitoring" and "Wake Up & Connect" are both enabled in the app settings.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    Do I need to keep the official app installed?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>No, you do not need the official app installed to use Mug Monitor. In fact, sometimes having both apps running in the background can cause them to fight over the Bluetooth connection to the mug. If you are experiencing connection drops, try force-closing the official app.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    The app says my mug is "Read Only".
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>If Mug Monitor indicates that your mug is in a "Read Only" state, you will need to authenticate it with the official Ember app first. Simply open the official app, wait for it to connect to your mug, and then force-close the official app. After doing this, open Mug Monitor again and it should have full access.</p>
+                </div>
+            </details>
+
+            <!-- Features Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Features & Integrations</h2>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    How do I enable Live Activities / Dynamic Island?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Live Activities and Dynamic Island support are built directly into Mug Monitor. To ensure they are working:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-2">
+                        <li>Make sure your iPhone is running iOS 16.2 or later.</li>
+                        <li>Go to your iPhone <strong>Settings > Mug Monitor</strong> and ensure "Live Activities" is toggled ON.</li>
+                        <li>Start a monitoring session in the app, and swipe up to go to your home screen. The Live Activity should automatically appear on your Lock Screen and in the Dynamic Island (on supported iPhones).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    How do I view the mug on my Apple Watch Smart Stack?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>If you have an Apple Watch running watchOS 11 or later, Mug Monitor widgets can appear in your Smart Stack. Simply swipe up from the bottom of your watch face (or turn the Digital Crown upward) to view your Smart Stack. You can long-press the stack to manually pin the Mug Monitor widget so it's always easily accessible.</p>
+                    <p class="mt-2 text-sm italic">Note: Make sure <strong>Live Activities</strong> are enabled in the Mug Monitor app settings on your iPhone, as the Smart Stack widget relies on this feature to update.</p>
+                </div>
+            </details>
+            
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    Can I see my mug temperature on my Mac?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Yes! If you are using a Mac with Apple Silicon (M-series chips like M1, M2, M3, M4, or M5), you can download the Mug Monitor iOS app directly from the Mac App Store. It will place a handy coffee cup icon right in your Mac's menu bar to show your current temperature.</p>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- Contact Support Footer -->
+        <div class="mt-16 bg-brand-50 rounded-2xl p-8 text-center border border-brand-100">
+            <h3 class="text-xl font-bold text-brand-900">Still need help?</h3>
+            <p class="mt-2 text-brand-700">If you've tried the steps above and are still having trouble, I'm here to help.</p>
+            <p class="mt-4 text-sm text-brand-600 font-medium">Please include your iPhone model and current iOS version in your email.</p>
+            <a href="mailto:support@yourdomain.com?subject=Mug%20Monitor%20iOS%20Support" class="mt-6 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors shadow-sm">
+                Contact Support
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

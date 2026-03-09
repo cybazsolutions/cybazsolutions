@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mug Monitor Support - Android</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // A nice modern teal/blue
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth animation for the native HTML details/summary accordion */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; margin-top: -10px}
+            100%  {opacity: 1; margin-top: 0px}
+        }
+        /* Custom plus/minus icon for summary */
+        summary::after {
+            content: '+';
+            float: right;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: #0d9488;
+            transition: transform 0.2s ease;
+        }
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased font-sans selection:bg-brand-100 selection:text-brand-900">
+
+    <div class="max-w-3xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 mb-4 shadow-sm">
+                <!-- Coffee Cup Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 13.5v5.25a3 3 0 003 3h9a3 3 0 003-3v-5.25M4.5 13.5L3 12m1.5 1.5l1.5-1.5m13.5 1.5l1.5-1.5m-1.5 1.5l-1.5-1.5" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Mug Monitor for Android
+            </h1>
+            <p class="mt-4 text-lg text-gray-500">
+                Frequently Asked Questions & Troubleshooting
+            </p>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="space-y-4">
+
+            <!-- Connection Issues Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Connectivity Issues</h2>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    My app won't connect automatically or gives a "Can't Connect" error.
+                </summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Bluetooth connections can sometimes be stubborn, especially if there's competition for the signal. Please try the following steps to isolate the issue:</p>
+                    <ol class="list-decimal pl-5 space-y-3">
+                        <li><strong>Check for other connected devices:</strong> Is another phone or tablet currently paired to the mug and nearby? Sometimes the mug gets "grabbed" by another device's Bluetooth. If so, go into the Bluetooth settings on that <em>other</em> device and completely <strong>"Forget"</strong> the mug.</li>
+                        <li><strong>Official app interference:</strong> If opening the official Ember app establishes the connection immediately, it's possible that app is holding onto the Bluetooth signal in the background. Try force-closing the official app to see if Mug Monitor connects more reliably.</li>
+                        <li><strong>Forget and re-pair:</strong> If neither of those is the culprit, let's start fresh. Go to your Android device's <strong>Settings > Connected devices > Bluetooth</strong>, find the mug in your list of paired devices, tap the gear icon next to it, and select <strong>Forget</strong> or <strong>Unpair</strong>. Open Mug Monitor and re-pair it from scratch.</li>
+                    </ol>
+                    <p class="pt-2 text-sm italic">Note: Make sure "Background Monitoring" and "Wake Up & Connect" are both enabled in the app settings.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    Do I need to keep the official app installed?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>No, you do not need the official app installed to use Mug Monitor. In fact, sometimes having both apps running in the background can cause them to fight over the Bluetooth connection to the mug. If you are experiencing connection drops, try force-closing the official app.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    The app says my mug is "Read Only".
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>If Mug Monitor indicates that your mug is in a "Read Only" state, you will need to authenticate it with the official Ember app first. Simply open the official app, connect to your mug, and then force-close the official app. After doing this, open Mug Monitor again and it should have full access.</p>
+                </div>
+            </details>
+
+            <!-- Features & Background Tasks Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Background Tasks & Features</h2>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    App is stuck on "Empty", not updating, or notifications are delayed.
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Android devices often employ aggressive battery optimization techniques (like Doze mode) that can pause or kill apps running in the background. This breaks continuous Bluetooth monitoring, which can cause the app to get stuck on an "Empty" state, stop updating the temperature, or delay notifications. To fix this:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-2">
+                        <li>Go to your phone's <strong>Settings > Apps > Mug Monitor</strong>.</li>
+                        <li>Look for the <strong>Battery</strong> or <strong>App battery usage</strong> section.</li>
+                        <li>Change the setting from "Optimized" to <strong>"Unrestricted"</strong>.</li>
+                    </ul>
+                    <p class="mt-2 text-sm italic">Note: The exact naming of these menus can vary depending on your phone's manufacturer (Samsung, Google, OnePlus, etc.).</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    How do I connect my Wear OS smartwatch?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>To use Mug Monitor on your smartwatch, you'll need to install the companion app on your watch directly. Open the Google Play Store on your Wear OS watch, scroll down to "Apps on your phone," and install Mug Monitor. Once installed, ensure your phone app is connected to your mug, and the watch should automatically sync the data.</p>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- Contact Support Footer -->
+        <div class="mt-16 bg-brand-50 rounded-2xl p-8 text-center border border-brand-100">
+            <h3 class="text-xl font-bold text-brand-900">Still need help?</h3>
+            <p class="mt-2 text-brand-700">If you've tried the steps above and are still having trouble, I'm here to help.</p>
+            <p class="mt-4 text-sm text-brand-600 font-medium">Please include your Android phone model and current Android version in your email.</p>
+            <a href="mailto:support@yourdomain.com?subject=Mug%20Monitor%20Android%20Support" class="mt-6 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors shadow-sm">
+                Contact Support
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

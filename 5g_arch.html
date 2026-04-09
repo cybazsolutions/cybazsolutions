@@ -125,40 +125,25 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 0.8rem 1.8rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .btn-primary {
-            background-color: var(--neon-cyan);
-            color: var(--bg-dark);
-            box-shadow: 0 4px 20px var(--neon-cyan-glow);
+        .store-badge {
+            display: inline-block;
+            height: 60px; /* Standardize height for badges */
+            transition: transform 0.2s ease, filter 0.2s ease;
+            cursor: pointer;
         }
 
-        .btn-primary:hover {
+        .store-badge img {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+
+        .store-badge:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 229, 255, 0.5);
-        }
-
-        .btn-secondary {
-            background-color: var(--bg-card);
-            color: var(--text-main);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
+            filter: drop-shadow(0 4px 15px rgba(0, 229, 255, 0.2));
         }
 
         /* --- Features Section --- */
@@ -271,6 +256,78 @@
             text-decoration: underline;
         }
 
+        /* --- Custom Modal --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--neon-cyan);
+            padding: 2.5rem 3rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 229, 255, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close-btn {
+            background-color: var(--neon-cyan);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background-color: #00c2d9;
+            transform: translateY(-2px);
+        }
+
         /* --- Footer --- */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -300,8 +357,9 @@
         /* --- Responsive --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Hide for simplicity on mobile, or implement a hamburger */
+            .nav-links { display: none; }
             .tutorial-grid { grid-template-columns: 1fr; }
+            .store-badge { height: 50px; }
         }
     </style>
 </head>
@@ -331,13 +389,14 @@
         <p>Advanced RF planning, Link Budget calculations, and real-time Satellite tracking—built specifically for telecommunication engineers.</p>
         
         <div class="store-buttons">
-            <a href="#" class="btn btn-primary">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18.5l-3-1.5-6 3v-13l6-3 6 3 6-3v7.5"></path><path d="M9 4v13"></path><path d="M15 7v5.5"></path><path d="M19 21v-6"></path><path d="M22 18l-3-3-3 3"></path></svg>
-                Download for Android
+            <!-- Google Play Badge -->
+            <a href="https://play.google.com/store/apps/details?id=com.cybaz.networkarchitect" class="store-badge" target="_blank" rel="noopener noreferrer">
+                <img src="GetItOnGooglePlay.png" alt="Get it on Google Play" onerror="this.parentElement.innerHTML='<div style=\'padding:10px 20px;background:#fff;color:#000;border-radius:8px;font-weight:bold;\'>Get it on Google Play</div>'">
             </a>
-            <a href="#" class="btn btn-secondary">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"></path><path d="M10 2c1 .5 2 2 2 5"></path></svg>
-                Download for iOS
+            
+            <!-- Apple App Store Badge -->
+            <a href="#" class="store-badge" onclick="showModal(event)">
+                <img src="Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" onerror="this.parentElement.innerHTML='<div style=\'padding:10px 20px;background:#fff;color:#000;border-radius:8px;font-weight:bold;\'>Download on the App Store</div>'">
             </a>
         </div>
     </section>
@@ -422,5 +481,42 @@
         </div>
     </footer>
 
+    <!-- Custom Modal for App Store -->
+    <div id="appStoreModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-icon">🚀</div>
+            <h2 class="modal-title">Coming Soon!</h2>
+            <p class="modal-text">We're putting the finishing touches on the iOS version. Check back shortly!</p>
+            <button class="modal-close-btn" onclick="closeModal()">Got it</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const modal = document.getElementById('appStoreModal');
+
+        function showModal(event) {
+            event.preventDefault(); // Prevent page jump from anchor link
+            modal.classList.add('show');
+            // Small delay to allow display:flex to apply before opacity transition
+            setTimeout(() => {
+                modal.style.opacity = '1';
+            }, 10);
+        }
+
+        function closeModal(event) {
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.remove('show');
+            }, 300); // Matches CSS transition time
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>

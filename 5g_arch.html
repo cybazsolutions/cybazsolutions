@@ -437,7 +437,7 @@
             </a>
             
             <!-- Apple App Store Badge -->
-            <a href="#" class="store-badge" onclick="showModal(event)">
+            <a href="https://apps.apple.com/app/6762137650" class="store-badge" target="_blank" rel="noopener noreferrer">
                 <img src="Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" onerror="this.parentElement.innerHTML='<div style=\'padding:10px 20px;background:#fff;color:#000;border-radius:8px;font-weight:bold;\'>Download on the App Store</div>'">
             </a>
         </div>
@@ -522,43 +522,5 @@
             </div>
         </div>
     </footer>
-
-    <!-- Custom Modal for App Store -->
-    <div id="appStoreModal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-icon">🚀</div>
-            <h2 class="modal-title">Coming Soon!</h2>
-            <p class="modal-text">We're putting the finishing touches on the iOS version. Check back shortly!</p>
-            <button class="modal-close-btn" onclick="closeModal()">Got it</button>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        const modal = document.getElementById('appStoreModal');
-
-        function showModal(event) {
-            event.preventDefault(); // Prevent page jump from anchor link
-            modal.classList.add('show');
-            // Small delay to allow display:flex to apply before opacity transition
-            setTimeout(() => {
-                modal.style.opacity = '1';
-            }, 10);
-        }
-
-        function closeModal(event) {
-            modal.style.opacity = '0';
-            setTimeout(() => {
-                modal.classList.remove('show');
-            }, 300); // Matches CSS transition time
-        }
-
-        // Close on escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape" && modal.classList.contains('show')) {
-                closeModal();
-            }
-        });
-    </script>
 </body>
 </html>

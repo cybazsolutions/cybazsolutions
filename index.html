@@ -52,8 +52,8 @@
 
       const navigation = [
         { name: "Services", href: "#services" },
+        { name: "Products", href: "#products" },
         { name: "Expertise", href: "#expertise" },
-        { name: "About", href: "#about" },
         { name: "Contact", href: "#contact" },
       ];
 
@@ -264,6 +264,67 @@
             </div>
           </section>
 
+          {/* Featured Product Section */}
+          <section id="products" className="py-20 bg-slate-900 text-white overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+              <div className="text-center mb-16">
+                <h2 className="text-base text-blue-400 font-semibold tracking-wide uppercase">Our Products</h2>
+                <p className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">
+                  Engineering Tools Built for the Real World
+                </p>
+                <p className="mt-4 max-w-2xl text-lg text-slate-400 mx-auto">
+                  Proprietary mobile applications and web simulators developed by Cybaz Solutions.
+                </p>
+              </div>
+
+              {/* 5G Architect Showcase Card */}
+              <div className="bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-700 flex flex-col md:flex-row items-center gap-10 shadow-2xl relative">
+                
+                {/* Decorative background glow */}
+                <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
+
+                <div className="md:w-1/3 flex justify-center relative z-10">
+                  <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-3xl bg-slate-900 border-2 border-cyan-400 shadow-[0_0_40px_rgba(34,211,238,0.3)] flex items-center justify-center overflow-hidden group">
+                    <Icon name="radio" className="text-cyan-400 absolute opacity-50" size={64} />
+                    <img 
+                      src="5gArchIcon.jpg" 
+                      alt="5G Architect Icon" 
+                      className="relative z-10 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                      onError={(e) => { e.target.style.opacity = 0; }} 
+                    />
+                  </div>
+                </div>
+                
+                <div className="md:w-2/3 text-center md:text-left relative z-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-900/50 border border-cyan-800 text-cyan-300 text-xs font-bold uppercase tracking-wide mb-4">
+                    Now Available
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4">5G Architect</h3>
+                  <p className="text-slate-300 text-lg mb-8 leading-relaxed">
+                    The ultimate 5G & NTN toolkit designed specifically for telecommunication engineers. Features advanced RF planning, Link Budget calculations, real-time satellite tracking, and interactive web simulators.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a
+                      href="5g_arch.html"
+                      className="inline-flex items-center justify-center gap-2 bg-cyan-500 text-slate-900 px-6 py-3.5 rounded-xl font-bold hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20"
+                    >
+                      <Icon name="smartphone" size={20} />
+                      View App Details
+                    </a>
+                    <a
+                      href="5g_arch.html#tutorials"
+                      className="inline-flex items-center justify-center gap-2 bg-slate-800 text-white border border-slate-600 px-6 py-3.5 rounded-xl font-medium hover:bg-slate-700 transition-colors"
+                    >
+                      <Icon name="monitor-play" size={20} />
+                      Try Web Tutorials
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Expertise & Authority Section */}
           <section id="expertise" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -281,7 +342,7 @@
                   <div className="space-y-6 text-lg text-slate-600">
                     <p>
                       At Cybaz Solutions, we don't just write code; we engineer systems. With a background deeply rooted
-                      in Radio Frequency (RF) fields, we understand the rigorous demands of hardware interaction,
+                      in RF fields, we understand the rigorous demands of hardware interaction,
                       system testing, and signal processing.
                     </p>
                     <p>
@@ -335,42 +396,11 @@
                   </div>
                 </div>
               </div>
-
-              {/* Optional About anchor (you had it in nav) */}
-              <div id="about" className="mt-20">
-                <div className="max-w-3xl mx-auto text-center">
-                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900">About Cybaz Solutions</h2>
-                  <p className="mt-4 text-slate-600">
-                    We help organizations ship reliable systems—combining RF domain expertise with modern software and practical AI.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* App Portfolio Teaser */}
-          <section className="py-20 bg-slate-900 text-white overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-              <div className="mx-auto mb-6 w-12 h-12 flex items-center justify-center">
-                <Icon name="smartphone" className="text-blue-500" size={48} />
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Custom Mobile Applications</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto mb-10 text-lg">
-                We build high-performance iOS and Android applications. <br />
-                Full portfolio of proprietary apps coming soon.
-              </p>
-
-              <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
-                <div className="px-6 py-2 bg-slate-900 rounded-full text-sm font-medium text-blue-200">
-                  Dev & Freelance Available
-                </div>
-              </div>
             </div>
           </section>
 
           {/* Contact Section */}
-          <section id="contact" className="py-24 bg-white">
+          <section id="contact" className="py-24 bg-white border-t border-slate-100">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-blue-50 rounded-3xl p-8 md:p-12 text-center border border-blue-100">
                 <h2 className="text-3xl font-bold text-slate-900 mb-4">Ready to Optimize Your Systems?</h2>
@@ -425,12 +455,12 @@
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-4">Services</h4>
+                  <h4 className="font-semibold text-slate-900 mb-4">Products & Services</h4>
                   <ul className="space-y-2 text-sm text-slate-600">
-                    <li>RF System Design</li>
-                    <li>System Testing</li>
-                    <li>Mobile App Dev</li>
-                    <li>AI Consulting</li>
+                    <li><a href="5g_arch.html" className="hover:text-blue-600">5G Architect App</a></li>
+                    <li><a href="5g_arch.html#tutorials" className="hover:text-blue-600">Interactive Tutorials</a></li>
+                    <li><a href="#services" className="hover:text-blue-600">RF System Design</a></li>
+                    <li><a href="#services" className="hover:text-blue-600">AI Consulting</a></li>
                   </ul>
                 </div>
 
@@ -438,14 +468,14 @@
                   <h4 className="font-semibold text-slate-900 mb-4">Contact</h4>
                   <ul className="space-y-2 text-sm text-slate-600">
                     <li>Phoenix, Arizona</li>
-                    <li>info@cybazsolutions.com</li>
-                    <li>support@cybazsolutions.com</li>
+                    <li><a href="mailto:info@cybazsolutions.com" className="hover:text-blue-600">info@cybazsolutions.com</a></li>
+                    <li><a href="mailto:support@cybazsolutions.com" className="hover:text-blue-600">support@cybazsolutions.com</a></li>
                   </ul>
                 </div>
               </div>
 
               <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-slate-400 text-sm">&copy; {year} Cybaz Solutions. All rights reserved.</p>
+                <p className="text-slate-400 text-sm">&copy; {year} Cybaz Solutions LLC. All rights reserved.</p>
                 <div className="flex gap-6 text-sm text-slate-500">
                   <a href="#" className="hover:text-slate-900">Privacy Policy</a>
                   <a href="#" className="hover:text-slate-900">Terms of Service</a>

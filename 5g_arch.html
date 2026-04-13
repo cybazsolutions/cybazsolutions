@@ -68,6 +68,7 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 2rem;
         }
 
@@ -80,6 +81,24 @@
 
         .nav-links a:hover {
             color: var(--neon-cyan);
+        }
+
+        .back-to-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            transition: all 0.3s ease !important;
+        }
+
+        .back-to-main:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: var(--text-main) !important;
         }
 
         /* --- Hero Section --- */
@@ -97,7 +116,7 @@
             width: 120px;
             height: 120px;
             border-radius: 28px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 0 30px var(--neon-cyan-glow);
             object-fit: cover;
             background-color: var(--bg-card); /* Fallback */
@@ -107,10 +126,27 @@
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             background: linear-gradient(to right, #fff, var(--neon-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        .company-badge {
+            font-size: 1.1rem;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .company-badge:hover {
+            opacity: 0.8;
+            text-decoration: underline;
         }
 
         .hero p {
@@ -376,6 +412,10 @@
                 <a href="#features">Features</a>
                 <a href="#tutorials">Tutorials</a>
                 <a href="mailto:support@cybazsolutions.com">Contact</a>
+                <a href="index.html" class="back-to-main">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    Cybaz Solutions
+                </a>
             </div>
         </div>
     </header>
@@ -386,6 +426,8 @@
         <img src="5gArchIcon.jpg" alt="5G Architect App Icon" class="hero-icon" onerror="this.style.display='none'">
         
         <h1>The Ultimate 5G & NTN Toolkit</h1>
+        <a href="index.html" class="company-badge">by Cybaz Solutions</a>
+        
         <p>Advanced RF planning, Link Budget calculations, and real-time Satellite tracking—built specifically for telecommunication engineers.</p>
         
         <div class="store-buttons">
@@ -473,7 +515,7 @@
     <!-- Footer -->
     <footer>
         <div class="section-container">
-            <p>&copy; 2026 Cybaz Solutions LLC. All rights reserved.</p>
+            <p>&copy; 2026 Built by <a href="index.html" style="color: var(--text-secondary); text-decoration: none; border-bottom: 1px dotted rgba(255,255,255,0.3); transition: color 0.2s;">Cybaz Solutions LLC</a>. All rights reserved.</p>
             <div class="footer-links">
                 <a href="5garch_privacy.html">Privacy Policy</a>
                 <a href="mailto:support@cybazsolutions.com">Support</a>

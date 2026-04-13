@@ -51,38 +51,38 @@
       const [isMenuOpen, setIsMenuOpen] = useState(false);
 
       const navigation = [
-        { name: "Services", href: "#services" },
         { name: "Products", href: "#products" },
         { name: "Expertise", href: "#expertise" },
-        { name: "Contact", href: "#contact" },
+        { name: "Background", href: "#background" },
+        { name: "Support", href: "#support" },
       ];
 
-      const services = [
+      const background = [
         {
-          title: "RF Engineering",
+          title: "RF & 5G Engineering",
           description:
-            "20+ years of specialized experience in RF code, design, and system testing. Bridging hardware constraints with software flexibility.",
+            "20+ years of specialized experience in RF code, design, and system testing across 4G LTE, 5G NR, and NTN technologies.",
           icon: "radio",
           color: "text-blue-500",
         },
         {
-          title: "AI Transformation",
+          title: "Systems Engineering",
           description:
-            'Helping Phoenix-area businesses pivot to an "AI First" strategy. We implement practical AI solutions to automate and optimize workflows.',
-          icon: "brain",
+            "Deep understanding of the physical layer, hardware interaction, and end-to-end network architecture. Bridging hardware constraints with software flexibility.",
+          icon: "cpu",
           color: "text-purple-500",
         },
         {
-          title: "Gov & Infrastructure",
+          title: "Software Infrastructure",
           description:
-            "10+ years delivering high-reliability UI and software infrastructure for small businesses, cities, and federal government contracts.",
+            "A decade of experience delivering high-reliability UI and software infrastructure for mission-critical systems and government applications.",
           icon: "server",
           color: "text-slate-500",
         },
         {
           title: "Mobile Development",
           description:
-            "Native and cross-platform application development for Android and iOS. Custom apps tailored to your business logic.",
+            "Native and cross-platform application development specifically tailored for complex engineering tools, calculators, and simulators.",
           icon: "smartphone",
           color: "text-green-500",
         },
@@ -92,7 +92,7 @@
         { label: "RF Experience", value: "20+ Years" },
         { label: "Gov/UI Projects", value: "10+ Years" },
         { label: "Location", value: "Phoenix, AZ" },
-        { label: "Focus", value: "AI First" },
+        { label: "Focus", value: "Telecom Tools" },
       ];
 
       const year = new Date().getFullYear();
@@ -124,10 +124,10 @@
                     </a>
                   ))}
                   <a
-                    href="#contact"
-                    className="bg-slate-900 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/20"
+                    href="#products"
+                    className="bg-cyan-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-cyan-700 transition-all shadow-lg shadow-cyan-600/20"
                   >
-                    Get in Touch
+                    View Our Apps
                   </a>
                 </div>
 
@@ -163,11 +163,11 @@
                     </a>
                   ))}
                   <a
-                    href="#contact"
-                    className="block mt-4 text-center bg-blue-600 text-white px-3 py-3 rounded-lg font-medium"
+                    href="#products"
+                    className="block mt-4 text-center bg-cyan-600 text-white px-3 py-3 rounded-lg font-medium"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Contact Us
+                    View Our Apps
                   </a>
                 </div>
               </div>
@@ -181,39 +181,38 @@
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="text-center max-w-4xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wide mb-6">
-                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                  Accepting New Contracts
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wide mb-6">
+                  <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                  Software for Telecommunications
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-                  Engineering the Future of <br className="hidden md:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                    RF, Software & AI
+                  Building Tools for the Future of <br className="hidden md:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                    5G, NTN & RF Engineering
                   </span>
                 </h1>
 
                 <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                  We provide expert contracting for mission-critical RF systems, government infrastructure, and
-                  AI-driven business transformation in the Phoenix area.
+                  We build professional-grade applications and web simulators for the telecommunications industry, backed by decades of hands-on expertise in RF, software, and systems engineering.
                 </p>
 
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <a
-                    href="#contact"
+                    href="#products"
                     className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30"
                   >
-                    Discuss Your Project
+                    Explore 5G Architect
                     <span className="ml-2 inline-flex">
                       <Icon name="arrow-right" className="text-white" size={20} />
                     </span>
                   </a>
 
                   <a
-                    href="#services"
+                    href="#background"
                     className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-all"
                   >
-                    View Capabilities
+                    Our Expertise
                   </a>
                 </div>
               </div>
@@ -234,41 +233,11 @@
             </div>
           </div>
 
-          {/* Services Section */}
-          <section id="services" className="py-20 bg-slate-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Core Competencies</h2>
-                <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-                  Technical Solutions for Complex Problems
-                </p>
-                <p className="mt-4 max-w-2xl text-xl text-slate-500 mx-auto">
-                  From low-level RF code to high-level AI strategies.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {services.map((service, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <Icon name={service.icon} className={service.color} size={28} />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                    <p className="text-slate-600 leading-relaxed text-sm">{service.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
           {/* Featured Product Section */}
           <section id="products" className="py-20 bg-slate-900 text-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="text-center mb-16">
-                <h2 className="text-base text-blue-400 font-semibold tracking-wide uppercase">Our Products</h2>
+                <h2 className="text-base text-cyan-400 font-semibold tracking-wide uppercase">Our Flagship Product</h2>
                 <p className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">
                   Engineering Tools Built for the Real World
                 </p>
@@ -281,7 +250,7 @@
               <div className="bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-700 flex flex-col md:flex-row items-center gap-10 shadow-2xl relative">
                 
                 {/* Decorative background glow */}
-                <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
+                <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
 
                 <div className="md:w-1/3 flex justify-center relative z-10">
                   <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-3xl bg-slate-900 border-2 border-cyan-400 shadow-[0_0_40px_rgba(34,211,238,0.3)] flex items-center justify-center overflow-hidden group">
@@ -345,6 +314,36 @@
             </div>
           </section>
 
+          {/* Background / Domain Knowledge Section */}
+          <section id="background" className="py-20 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Foundation</h2>
+                <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+                  The Expertise Behind Our Products
+                </p>
+                <p className="mt-4 max-w-2xl text-xl text-slate-500 mx-auto">
+                  Cybaz Solutions is built on a deep foundation of telecommunications and software engineering.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {background.map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <Icon name={item.icon} className={item.color} size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+                    <p className="text-slate-600 leading-relaxed text-sm">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           {/* Expertise & Authority Section */}
           <section id="expertise" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -366,12 +365,12 @@
                       system testing, and signal processing.
                     </p>
                     <p>
-                      Our portfolio includes critical work with Federal Government agencies and City municipalities,
+                      Our past portfolio includes critical work with Federal Government agencies and City municipalities,
                       ensuring that UI and software infrastructure is secure, accessible, and robust.
                     </p>
                     <p className="font-medium text-slate-900">
-                      Now, we are bringing this enterprise-grade discipline to small businesses in Phoenix, empowering
-                      them with AI-first strategies.
+                      Now, we are channeling this enterprise-grade discipline into building powerful, intuitive software tools 
+                      designed specifically to help RF professionals and engineers work smarter.
                     </p>
                   </div>
 
@@ -386,7 +385,7 @@
                 </div>
 
                 <div className="mt-12 lg:mt-0 relative">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-2xl transform rotate-3 opacity-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-500 rounded-2xl transform rotate-3 opacity-10"></div>
 
                   <div className="bg-slate-900 rounded-2xl p-8 text-white relative shadow-2xl">
                     <div className="flex items-center gap-4 mb-8">
@@ -394,20 +393,20 @@
                         <Icon name="map-pin" className="text-blue-400" size={24} />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg">Local Partner</h3>
+                        <h3 className="font-bold text-lg">Proudly Local</h3>
                         <p className="text-slate-400 text-sm">Based in Phoenix, Arizona</p>
                       </div>
                     </div>
 
                     <div className="space-y-6">
                       <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                        <h4 className="font-semibold text-blue-300 mb-2">Government & Federal</h4>
+                        <h4 className="font-semibold text-blue-300 mb-2">Government & Federal Background</h4>
                         <p className="text-sm text-slate-300">
                           Experience adhering to strict federal standards for software and UI accessibility.
                         </p>
                       </div>
                       <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                        <h4 className="font-semibold text-purple-300 mb-2">RF & Hardware</h4>
+                        <h4 className="font-semibold text-cyan-300 mb-2">RF & Hardware Engineering</h4>
                         <p className="text-sm text-slate-300">
                           Deep understanding of the physical layer, coding for devices, and comprehensive system testing.
                         </p>
@@ -419,40 +418,40 @@
             </div>
           </section>
 
-          {/* Contact Section */}
-          <section id="contact" className="py-24 bg-white border-t border-slate-100">
+          {/* Contact / Support Section */}
+          <section id="support" className="py-24 bg-white border-t border-slate-100">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="bg-blue-50 rounded-3xl p-8 md:p-12 text-center border border-blue-100">
-                <h2 className="text-3xl font-bold text-slate-900 mb-4">Ready to Optimize Your Systems?</h2>
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Product Support & Feedback</h2>
                 <p className="text-slate-600 mb-8 max-w-xl mx-auto">
-                  Whether you need RF expertise, government-grade UI infrastructure, or an AI strategy for your Phoenix business,
-                  Cybaz Solutions delivers.
+                  Have a question about 5G Architect, or a feature request for our interactive web simulators? 
+                  Our team is dedicated to supporting the tools we build.
                 </p>
 
                 <div className="flex flex-col md:flex-row justify-center gap-6 items-center">
                   <a
-                    href="mailto:info@cybazsolutions.com"
+                    href="mailto:support@cybazsolutions.com"
                     className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all w-full md:w-auto"
                   >
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                      <Icon name="mail" className="text-blue-600 group-hover:text-white" size={20} />
+                      <Icon name="life-buoy" className="text-blue-600 group-hover:text-white" size={20} />
                     </div>
                     <div className="text-left">
-                      <p className="text-xs text-slate-500 font-semibold uppercase">General Inquiries</p>
-                      <p className="text-slate-900 font-medium">info@cybazsolutions.com</p>
+                      <p className="text-xs text-slate-500 font-semibold uppercase">App Support</p>
+                      <p className="text-slate-900 font-medium">support@cybazsolutions.com</p>
                     </div>
                   </a>
 
                   <a
-                    href="mailto:support@cybazsolutions.com"
-                    className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-purple-300 hover:shadow-md transition-all w-full md:w-auto"
+                    href="mailto:info@cybazsolutions.com"
+                    className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-cyan-300 hover:shadow-md transition-all w-full md:w-auto"
                   >
-                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center group-hover:bg-purple-600 transition-colors">
-                      <Icon name="activity" className="text-purple-600 group-hover:text-white" size={20} />
+                    <div className="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center group-hover:bg-cyan-600 transition-colors">
+                      <Icon name="message-square" className="text-cyan-600 group-hover:text-white" size={20} />
                     </div>
                     <div className="text-left">
-                      <p className="text-xs text-slate-500 font-semibold uppercase">Technical Support</p>
-                      <p className="text-slate-900 font-medium">support@cybazsolutions.com</p>
+                      <p className="text-xs text-slate-500 font-semibold uppercase">General Feedback</p>
+                      <p className="text-slate-900 font-medium">info@cybazsolutions.com</p>
                     </div>
                   </a>
                 </div>
@@ -470,26 +469,25 @@
                     <span className="font-bold text-lg text-slate-900">CYBAZ SOLUTIONS</span>
                   </div>
                   <p className="text-slate-500 max-w-xs text-sm">
-                    Empowering businesses with RF engineering expertise, robust software infrastructure, and AI-first strategies.
+                    Building professional-grade software and engineering tools for the telecommunications industry.
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-4">Products & Services</h4>
+                  <h4 className="font-semibold text-slate-900 mb-4">Products & Resources</h4>
                   <ul className="space-y-2 text-sm text-slate-600">
                     <li><a href="5g_arch.html" className="hover:text-blue-600">5G Architect App</a></li>
-                    <li><a href="5g_arch.html#tutorials" className="hover:text-blue-600">Interactive Tutorials</a></li>
-                    <li><a href="#services" className="hover:text-blue-600">RF System Design</a></li>
-                    <li><a href="#services" className="hover:text-blue-600">AI Consulting</a></li>
+                    <li><a href="5g_arch.html#tutorials" className="hover:text-blue-600">Web Simulators</a></li>
+                    <li><a href="#background" className="hover:text-blue-600">Our Domain Expertise</a></li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-4">Contact</h4>
+                  <h4 className="font-semibold text-slate-900 mb-4">Support</h4>
                   <ul className="space-y-2 text-sm text-slate-600">
-                    <li>Phoenix, Arizona</li>
-                    <li><a href="mailto:info@cybazsolutions.com" className="hover:text-blue-600">info@cybazsolutions.com</a></li>
                     <li><a href="mailto:support@cybazsolutions.com" className="hover:text-blue-600">support@cybazsolutions.com</a></li>
+                    <li><a href="mailto:info@cybazsolutions.com" className="hover:text-blue-600">info@cybazsolutions.com</a></li>
+                    <li className="pt-2 text-slate-400">Phoenix, Arizona</li>
                   </ul>
                 </div>
               </div>

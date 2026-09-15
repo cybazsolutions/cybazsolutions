@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mug Monitor - Unofficial Ember Companion App</title>
-    <meta name="description" content="Mug Monitor: Background monitoring, reliable alerts, and visual pulsing for your smart mug. Available on Android and iOS.">
+    <meta name="description" content="Mug Monitor is an independent Ember companion app. Get Ready to Drink alerts on iOS and Android, plus automatic background reconnect on supported Android phones. Free core app; advanced features require Premium.">
     
     <!-- Favicon Configuration: This sets the icon in the browser tab -->
     <link rel="icon" type="image/png" href="MugMonitorIcon.png">
@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
-            --primary-color: #d32f2f; /* Ember-like red/orange */
+            --primary-color: #d32f2f; /* Mug Monitor's warm accent */
             --primary-bg: #fff0f0;
             --text-main: #1f2937;
             --text-secondary: #4b5563;
@@ -23,6 +23,15 @@
             --ios-blue: #007AFF;
             --android-green: #3DDC84;
             --tip-color: #ff813f; /* A friendly tip/coffee color */
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        a:focus-visible, summary:focus-visible {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 5px;
         }
 
         body {
@@ -70,6 +79,118 @@
             margin: 0 auto 40px;
         }
 
+        .hero .premium-note {
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 24px auto 0;
+        }
+
+        /* New Premium features use the existing card and badge styles. */
+        .updates-section {
+            padding: 40px 0 60px;
+            background: linear-gradient(180deg, #ffffff 0%, var(--primary-bg) 100%);
+        }
+
+        .updates-section .section-header p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+        }
+
+        .updates-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+            align-items: start;
+        }
+
+        .updates-grid .update-card {
+            background: var(--bg-color);
+            min-width: 0;
+        }
+
+        .updates-grid .update-card:hover {
+            transform: none;
+        }
+
+        .update-card .feature-labels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .feature-labels .platform-badge {
+            margin: 0;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+        }
+
+        .badge-premium {
+            background: var(--primary-bg);
+            color: #a12626;
+        }
+
+        .badge-both {
+            background: #f3f4f6;
+            color: var(--text-secondary);
+        }
+
+        .update-card p + p {
+            margin-top: 16px;
+        }
+
+        .update-card ul, .update-card ol {
+            padding-left: 22px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .update-card li + li {
+            margin-top: 10px;
+        }
+
+        .ready-example {
+            padding: 20px;
+            margin: 24px 0;
+            background: #f0f7f4;
+            border-left: 4px solid #2e7d32;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .ready-example h4 {
+            margin: 0 0 12px;
+            color: #245b29;
+            font-size: 1rem;
+        }
+
+        .ready-example ol {
+            margin-bottom: 0;
+        }
+
+        .update-card .compatibility-note {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 16px;
+            margin: 24px 0;
+        }
+
+        .setup-details {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 18px;
+            margin-top: 24px;
+        }
+
+        .setup-details summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .setup-details a {
+            color: #a12626;
+            text-underline-offset: 3px;
+        }
+
         /* Store Badges */
         .store-buttons {
             display: flex;
@@ -102,7 +223,7 @@
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             gap: 30px;
         }
 
@@ -162,7 +283,7 @@
 
         .platform-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 40px;
             align-items: start;
         }
@@ -423,7 +544,7 @@
 
         .disclaimer p {
             font-size: 0.85rem;
-            color: #9ca3af;
+            color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto;
         }
@@ -437,10 +558,11 @@
         }
 
         footer a {
-            color: #9ca3af;
+            color: #d1d5db;
             text-decoration: none;
             margin: 0 10px;
             font-size: 0.9rem;
+            overflow-wrap: anywhere;
             transition: color 0.2s;
         }
 
@@ -451,14 +573,28 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .platform-grid { grid-template-columns: 1fr; }
-            .preview-image { max-height: 300px; }
+            .hero { padding: 50px 0 40px; }
+            .platform-grid, .updates-grid { grid-template-columns: 1fr; }
+            .preview-image { max-height: 300px; object-fit: contain; }
             .store-badge-img { height: 48px; } /* Slightly smaller badges on mobile */
             .faq-buttons { flex-direction: column; align-items: stretch; }
+        }
+
+        @media (max-width: 480px) {
+            .feature-card, .platform-col, .pricing-card { padding: 24px; }
+            .story-section, .pricing-section, .support-section { padding-left: 0; padding-right: 0; }
+            .section-header h2 { font-size: 1.9rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition: none !important; }
+            .feature-card:hover, .store-badge-link:hover, .tip-btn:hover, .faq-btn:hover { transform: none; }
         }
     </style>
 </head>
 <body>
+
+    <main>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -467,7 +603,7 @@
             <img src="MugMonitorIcon.png" alt="Mug Monitor App Icon" class="app-icon" onerror="this.style.display='none'">
             
             <h1>Mug Monitor</h1>
-            <p>The advanced companion app for your Ember mug. Get reliable background monitoring, persistent notifications, and visual pulsing alerts.</p>
+            <p>Your independent companion app for Ember mugs. Know when your drink is ready, check its status at a glance, and let supported Android phones reconnect in the background.</p>
             
             <div class="store-buttons">
                 <!-- Android Link -->
@@ -479,6 +615,65 @@
                     <img src="Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" class="store-badge-img">
                 </a>
             </div>
+            <p class="premium-note">The core app is free. <strong>Ready to Drink, automatic background reconnect, and smartwatch support require Premium.</strong> New users get a <strong>7-day free trial</strong> to explore supported Premium features.</p>
+        </div>
+    </section>
+
+    <!-- New Features -->
+    <section class="updates-section" aria-labelledby="updates-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="updates-title">Earlier alerts. Easier reconnects.</h2>
+                <p>Two new Premium features to help you spend less time checking your mug and more time enjoying your drink.</p>
+            </div>
+            <div class="updates-grid">
+                <article class="feature-card update-card" id="ready-to-drink" aria-labelledby="ready-title">
+                    <div class="feature-labels">
+                        <span class="platform-badge badge-both">iOS + Android</span>
+                        <span class="platform-badge badge-premium">Premium feature</span>
+                    </div>
+                    <h3 id="ready-title">Ready to Drink</h3>
+                    <p>Prefer your drink a little hotter than your target temperature? Choose an earlier alert and get notified after your drink cools into your ready range.</p>
+                    <div class="ready-example">
+                        <h4>Example: 132&deg;F target, +5&deg;F offset</h4>
+                        <ol>
+                            <li>Your drink cools to <strong>137&deg;F</strong>, starting a one-minute timer.</li>
+                            <li>It remains <strong>above 132&deg;F and at or below 137&deg;F</strong> while cooling.</li>
+                            <li>After <strong>one minute in that range</strong>, you get a Ready to Drink alert.</li>
+                        </ol>
+                    </div>
+                    <p>The delay helps avoid premature alerts from temporary readings while filling the mug. If the temperature leaves the ready range, the pending alert is canceled.</p>
+                    <ul>
+                        <li>Choose <strong>1&ndash;20&deg;F above your target</strong>; the default is +5&deg;F.</li>
+                        <li>The top of the range is capped at <strong>145&deg;F</strong>. If your target is already at that maximum, an earlier alert is unavailable.</li>
+                        <li>Optionally keep the normal <strong>Perfect</strong> alert enabled too.</li>
+                    </ul>
+                    <p>Ready to Drink is optional and off by default. Enable it in Settings and choose your preferred offset.</p>
+                </article>
+
+                <article class="feature-card update-card" id="background-reconnect" aria-labelledby="reconnect-title">
+                    <div class="feature-labels">
+                        <span class="platform-badge badge-android">Android only</span>
+                        <span class="platform-badge badge-premium">Premium feature</span>
+                    </div>
+                    <h3 id="reconnect-title">Automatic multi-day background reconnect</h3>
+                    <p>Previously, automatic reconnection depended on Mug Monitor's background service staying running. With Android system wake-up configured, Android can wake the app and attempt to reconnect when it detects your mug nearby, even if that monitoring service has stopped.</p>
+                    <p>It is designed to resume monitoring between drinks and across days without you having to reopen the app. This is <strong>automatic recovery, not a guaranteed uninterrupted connection</strong>; detection and reconnection can vary by phone and mug state.</p>
+                    <p class="compatibility-note"><strong>Requires Android 12 or newer and Companion Device wake-up support.</strong> Some phones lack this support even on a compatible Android version. Settings will show whether your phone supports it. Unsupported phones retain the existing reconnect methods.</p>
+                    <p>The option is enabled by default for Premium and trial users, but <strong>Android system wake-up still requires one-time setup</strong>. An explicit manual Disconnect is respected.</p>
+                    <details class="setup-details">
+                        <summary>How to set up Android wake-up</summary>
+                        <ol>
+                            <li>Connect your mug in Mug Monitor first.</li>
+                            <li>In Settings, enable <strong>Automatic background reconnect</strong> if needed, then choose <strong>Set up Android wake-up</strong>.</li>
+                            <li>If Android cannot find your mug, hold the button on the bottom for about <strong>7 seconds</strong>. Release when the blue pairing light pulses (or the Travel Mug shows PAIR), then retry setup. Do not keep holding until the red factory-reset light.</li>
+                            <li>Select your mug and approve Android's request. Check Settings for confirmation that wake-up is enabled.</li>
+                        </ol>
+                        <p>No need to remove an existing Bluetooth pairing first. If another phone is connected to the mug, disconnect it there before trying setup.</p>
+                        <p><a href="./faq-android.html">More Android setup and troubleshooting help</a></p>
+                    </details>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -488,14 +683,19 @@
             <i class="ph-fill ph-coffee quote-icon"></i>
             <h2>How It Started</h2>
             <p>
-                Mug Monitor started as a hobby project. I wanted <em>really good</em> connectivity—a connection that would last all day AND I wanted to quickly see the temperature/status without having to open the app (silent notifications)! I also made sure the mug would seamlessly re-connect if I left the house and came back. After a few months of working on the Android app, everything was working exactly how I liked it. I even added a bonus feature to pulse my mug LED color when the temp was ready (to quickly catch my eye). But then, my iOS family members wanted a similar experience... so I spent several more months getting it working for them as well. Now, it's available for everyone who takes their hot beverages seriously.
+                Mug Monitor started as a hobby project. I wanted <em>better background connectivity</em> and a quick way to see my mug's temperature without opening an app. I worked on reconnecting after leaving home and coming back, added silent status notifications, and gave the mug a custom LED pulse when a drink reached its target.
             </p>
+            <p>Then my iOS family members wanted a similar experience, so Mug Monitor grew to support both platforms. Community feedback continues to shape it, including the new Ready to Drink alerts and Android system wake-up.</p>
         </div>
     </section>
 
     <!-- Features Grid -->
     <section class="features">
         <div class="container">
+            <div class="section-header">
+                <h2>More ways to enjoy your mug</h2>
+                <p style="color: var(--text-secondary);">Everyday convenience, with advanced background and smartwatch features available through Premium.</p>
+            </div>
             <div class="feature-grid">
                 
                 <!-- Feature 1: Background Monitoring -->
@@ -504,7 +704,7 @@
                         <i class="ph ph-bell-ringing"></i>
                     </div>
                     <h3>Smart Monitoring</h3>
-                    <p>Visualize your drink's temperature instantly without opening the app. Through silent notifications and lock screen updates, Mug Monitor ensures your coffee or tea is never too hot or too cold.</p>
+                    <p>Check your mug's reported temperature and battery at a glance through silent status notifications on Android and Live Activities on iOS. Spend less time opening the app to see how your drink is doing.</p>
                 </div>
 
                 <!-- Feature 2: Reliable Alerts -->
@@ -512,8 +712,8 @@
                     <div class="icon-box">
                         <i class="ph ph-bluetooth"></i>
                     </div>
-                    <h3>Reliable Connectivity</h3>
-                    <p>Engineered for persistence, the app actively handles Bluetooth reconnections and strives to maintain a long-term connection, ensuring you stay linked to your mug throughout the day.</p>
+                    <h3>Background Monitoring</h3>
+                    <p>Premium background monitoring helps keep your mug's status available between app visits. Supported Android phones can also use the new system wake-up setup for automatic background reconnect.</p>
                 </div>
 
                 <!-- Feature 3: Visual Pulsing -->
@@ -522,7 +722,7 @@
                         <i class="ph ph-palette"></i>
                     </div>
                     <h3>Visual Pulsing</h3>
-                    <p>Mug Monitor pulses your mug's LED in your personalized color when your drink is ready. See status at a glance—it helps visualize your drink is ready a little better than just the static white LED.</p>
+                    <p>Have your mug's LED pulse in your chosen color when your drink reaches its target temperature. A visual cue on the mug itself, alongside your phone or watch alerts.</p>
                 </div>
 
             </div>
@@ -534,7 +734,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Native Experiences</h2>
-                <p style="color: var(--text-secondary);">Optimized for both Android and iOS.</p>
+                <p style="color: var(--text-secondary);">Ready to Drink on both platforms. Android system wake-up on supported Android phones. Smartwatch support requires Premium.</p>
             </div>
             
             <div class="platform-grid">
@@ -543,7 +743,7 @@
                 <div class="platform-col">
                     <span class="platform-badge badge-android">Android</span>
                     <h3>Silent Notifications & Wear OS</h3>
-                    <p>Quickly check your mug status. View live temperature and battery status directly in your notification shade or natively on your wrist.</p>
+                    <p>Check temperature and battery in your notification shade or on your wrist. With Premium and one-time setup, supported phones can also wake the app when your mug appears nearby.</p>
                     <img src="Silent.png" alt="Android Silent Notification" class="preview-image">
                     <img src="WorksWithWearOS.png" alt="Works with Wear OS" class="preview-image">
                 </div>
@@ -552,7 +752,7 @@
                 <div class="platform-col">
                     <span class="platform-badge badge-ios">iOS</span>
                     <h3>Live Activities & Apple Watch</h3>
-                    <p>Track your brew from the Lock Screen or your Apple Watch. Live Activities keep your mug's temperature front and center.</p>
+                    <p>Track your drink from the Lock Screen or your Apple Watch, and use Ready to Drink for an earlier alert. The new Android system wake-up reconnect mode is not available on iOS.</p>
                     <img src="MM_phoneAndWatch.png" alt="iOS App and Apple Watch Integration" class="preview-image">
                 </div>
 
@@ -567,19 +767,20 @@
                 <i class="ph-fill ph-tag pricing-icon"></i>
                 <h2>Support the Developer</h2>
                 <p>
-                    The core app is completely <strong>free to download and use</strong>. There is a small charge for some of the advanced premium features (which helps cover ongoing development time and costs!), but you don't have to guess if it's worth it.
+                    The core app is <strong>free to download and use</strong>. Premium includes Ready to Drink alerts, advanced background monitoring and reconnect features, and smartwatch support. Your purchase helps cover ongoing development and improvements.
                 </p>
                 <div class="trial-badge">
                     <i class="ph-fill ph-gift"></i>
-                    Enjoy a full 7-day free trial to test absolutely everything!
+                    New users get a 7-day free trial of Premium.
                 </div>
+                <p style="font-size: 0.95rem;">Feature availability depends on your phone and platform. Updating the app does not restart a previously used trial. After the trial, Premium features require a purchase; the core app remains free.</p>
                 
                 <div class="tip-divider"></div>
                 
                 <div class="tip-container">
                     <p class="tip-text">Already love the app and want to say thanks? Tips are always deeply appreciated!</p>
                     
-                    <a href="https://buy.stripe.com/eVqdR3fhE6lQ7ENggHg3600" target="_blank" class="tip-btn">
+                    <a href="https://buy.stripe.com/eVqdR3fhE6lQ7ENggHg3600" target="_blank" rel="noopener noreferrer" class="tip-btn">
                         <i class="ph-fill ph-coffee"></i>
                         Tip the Developer
                     </a>
@@ -607,11 +808,13 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Disclaimer -->
     <section class="disclaimer">
         <div class="container">
             <p><strong>Notice of Non-Affiliation and Disclaimer:</strong></p>
-            <p>"Mug Monitor" is an unofficial companion app. It is not affiliated with, endorsed by, or connected to Ember Technologies, Inc. All product and company names are trademarks™ or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
+            <p>"Mug Monitor" is an unofficial companion app. It is not affiliated with, endorsed by, or connected to Ember Technologies, Inc. All product and company names are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
         </div>
     </section>
 

@@ -1,511 +1,193 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cybaz Solutions</title>
-
-  <!-- Tailwind (CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Optional: nicer font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-  </style>
-</head>
-<body class="bg-slate-50 text-slate-900 selection:bg-blue-100">
-
-  <div id="root"></div>
-
-  <!-- React (CDN) -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-  <!-- Babel (so we can write JSX in-browser) -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-  <!-- Lucide (CDN) -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script type="text/babel">
-    const { useState, useEffect } = React;
-
-    function Icon({ name, className = "", size = 24 }) {
-      const ref = React.useRef(null);
-
-      useEffect(() => {
-        if (ref.current && window.lucide) {
-          ref.current.innerHTML = window.lucide.icons[name]?.toSvg({ width: size, height: size, class: className }) || "";
-        }
-      }, [name, className, size]);
-
-      return <span ref={ref} aria-hidden="true" className="inline-flex leading-none" />;
-    }
-
-    function CybazWebsite() {
-      const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-      const navigation = [
-        { name: "Products", href: "#products" },
-        { name: "Expertise", href: "#expertise" },
-        { name: "Background", href: "#background" },
-        { name: "Support", href: "#support" },
-      ];
-
-      const background = [
-        {
-          title: "RF & 5G Engineering",
-          description:
-            "20+ years of specialized experience in RF code, design, and system testing across 4G LTE, 5G NR, and NTN technologies.",
-          icon: "radio",
-          color: "text-blue-500",
-        },
-        {
-          title: "Systems Engineering",
-          description:
-            "Deep understanding of the physical layer, hardware interaction, and end-to-end network architecture. Bridging hardware constraints with software flexibility.",
-          icon: "cpu",
-          color: "text-purple-500",
-        },
-        {
-          title: "Software Infrastructure",
-          description:
-            "A decade of experience delivering high-reliability UI and software infrastructure for mission-critical systems and government applications.",
-          icon: "server",
-          color: "text-slate-500",
-        },
-        {
-          title: "Mobile Development",
-          description:
-            "Native and cross-platform application development specifically tailored for complex engineering tools, calculators, and simulators.",
-          icon: "smartphone",
-          color: "text-green-500",
-        },
-      ];
-
-      const stats = [
-        { label: "RF Experience", value: "20+ Years" },
-        { label: "Gov/UI Projects", value: "10+ Years" },
-        { label: "Location", value: "Phoenix, AZ" },
-        { label: "Focus", value: "Telecom Tools" },
-      ];
-
-      const year = new Date().getFullYear();
-
-      return (
-        <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-blue-100">
-          {/* Navigation */}
-          <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between h-20 items-center">
-                <a href="#" className="flex-shrink-0 flex items-center gap-2">
-                  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <Icon name="cpu" className="text-white" size={20} />
-                  </div>
-                  <span className="font-bold text-xl tracking-tight text-slate-900">
-                    CYBAZ<span className="text-blue-600">SOLUTIONS</span>
-                  </span>
-                </a>
-
-                {/* Desktop Menu */}
-                <div className="hidden md:flex space-x-8 items-center">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                  <a
-                    href="#products"
-                    className="bg-cyan-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-cyan-700 transition-all shadow-lg shadow-cyan-600/20"
-                  >
-                    View Our Apps
-                  </a>
-                </div>
-
-                {/* Mobile menu button */}
-                <div className="md:hidden">
-                  <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="text-slate-500 hover:text-slate-700 focus:outline-none p-2"
-                    aria-label="Toggle menu"
-                  >
-                    {isMenuOpen ? (
-                      <Icon name="x" className="text-slate-700" size={24} />
-                    ) : (
-                      <Icon name="menu" className="text-slate-700" size={24} />
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Menu Dropdown */}
-            {isMenuOpen && (
-              <div className="md:hidden bg-white border-t border-slate-100 absolute w-full">
-                <div className="px-4 pt-2 pb-6 space-y-1 shadow-xl">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="block px-3 py-4 text-base font-medium text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                  <a
-                    href="#products"
-                    className="block mt-4 text-center bg-cyan-600 text-white px-3 py-3 rounded-lg font-medium"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    View Our Apps
-                  </a>
-                </div>
-              </div>
-            )}
-          </nav>
-
-          {/* Hero Section */}
-          <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-            {/* Abstract Background Element */}
-            <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl opacity-70 animate-pulse" />
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <div className="text-center max-w-4xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wide mb-6">
-                  <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                  Software for Telecommunications
-                </div>
-
-                <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-                  Building Tools for the Future of <br className="hidden md:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-                    5G, NTN & RF Engineering
-                  </span>
-                </h1>
-
-                <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                  We build professional-grade applications and web simulators for the telecommunications industry, backed by decades of hands-on expertise in RF, software, and systems engineering.
-                </p>
-
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <a
-                    href="#products"
-                    className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/30"
-                  >
-                    Explore 5G Architect
-                    <span className="ml-2 inline-flex">
-                      <Icon name="arrow-right" className="text-white" size={20} />
-                    </span>
-                  </a>
-
-                  <a
-                    href="#background"
-                    className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-all"
-                  >
-                    Our Expertise
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Stats Bar */}
-          <div className="border-y border-slate-200 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">{stat.value}</div>
-                    <div className="text-sm text-slate-500 font-medium uppercase tracking-wider">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Featured Product Section */}
-          <section id="products" className="py-20 bg-slate-900 text-white overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-              <div className="text-center mb-16">
-                <h2 className="text-base text-cyan-400 font-semibold tracking-wide uppercase">Our Flagship Product</h2>
-                <p className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">
-                  Engineering Tools Built for the Real World
-                </p>
-                <p className="mt-4 max-w-2xl text-lg text-slate-400 mx-auto">
-                  Proprietary mobile applications and web simulators developed by Cybaz Solutions.
-                </p>
-              </div>
-
-              {/* 5G Architect Showcase Card */}
-              <div className="bg-slate-800 rounded-3xl p-8 md:p-12 border border-slate-700 flex flex-col md:flex-row items-center gap-10 shadow-2xl relative">
-                
-                {/* Decorative background glow */}
-                <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"></div>
-
-                <div className="md:w-1/3 flex justify-center relative z-10">
-                  <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-3xl bg-slate-900 border-2 border-cyan-400 shadow-[0_0_40px_rgba(34,211,238,0.3)] flex items-center justify-center overflow-hidden group">
-                    <Icon name="radio" className="text-cyan-400 absolute opacity-50" size={64} />
-                    <img 
-                      src="5gArchIcon.jpg" 
-                      alt="5G Architect Icon" 
-                      className="relative z-10 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
-                      onError={(e) => { e.target.style.opacity = 0; }} 
-                    />
-                  </div>
-                </div>
-                
-                <div className="md:w-2/3 text-center md:text-left relative z-10">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-900/50 border border-cyan-800 text-cyan-300 text-xs font-bold uppercase tracking-wide mb-4">
-                    Now Available
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-4">5G Architect</h3>
-                  <p className="text-slate-300 text-lg mb-8 leading-relaxed">
-                    The ultimate 5G & NTN toolkit designed specifically for telecommunication engineers. Features advanced RF planning, Link Budget calculations, real-time satellite tracking, and interactive web simulators.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-8">
-                    <a
-                      href="5g_arch.html"
-                      className="inline-flex items-center justify-center gap-2 bg-cyan-500 text-slate-900 px-6 py-3.5 rounded-xl font-bold hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20"
-                    >
-                      <Icon name="smartphone" size={20} />
-                      View App Details
-                    </a>
-                    <a
-                      href="5g_arch.html#tutorials"
-                      className="inline-flex items-center justify-center gap-2 bg-slate-800 text-white border border-slate-600 px-6 py-3.5 rounded-xl font-medium hover:bg-slate-700 transition-colors"
-                    >
-                      <Icon name="monitor-play" size={20} />
-                      Try Web Tutorials
-                    </a>
-                  </div>
-
-                  {/* App Store Badges */}
-                  <div className="flex flex-row justify-center md:justify-start gap-4">
-                    <a 
-                      href="https://play.google.com/store/apps/details?id=com.cybaz.networkarchitect" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="h-12 transition-transform duration-200 hover:-translate-y-1 block"
-                    >
-                      <img src="GetItOnGooglePlay.png" alt="Get it on Google Play" className="h-full w-auto" />
-                    </a>
-                    <a 
-                      href="https://apps.apple.com/app/6762137650" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="h-12 transition-transform duration-200 hover:-translate-y-1 block"
-                    >
-                      <img src="Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" className="h-full w-auto" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Background / Domain Knowledge Section */}
-          <section id="background" className="py-20 bg-slate-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Our Foundation</h2>
-                <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-900 sm:text-4xl">
-                  The Expertise Behind Our Products
-                </p>
-                <p className="mt-4 max-w-2xl text-xl text-slate-500 mx-auto">
-                  Cybaz Solutions is built on a deep foundation of telecommunications and software engineering.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {background.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <Icon name={item.icon} className={item.color} size={28} />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                    <p className="text-slate-600 leading-relaxed text-sm">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Expertise & Authority Section */}
-          <section id="expertise" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                <div>
-                  <div className="inline-flex items-center gap-2 text-blue-600 font-semibold mb-4">
-                    <Icon name="shield-check" className="text-blue-600" size={20} />
-                    <span>Proven Reliability</span>
-                  </div>
-
-                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                    Decades of Experience in High-Stakes Environments
-                  </h2>
-
-                  <div className="space-y-6 text-lg text-slate-600">
-                    <p>
-                      At Cybaz Solutions, we don't just write code; we engineer systems. With a background deeply rooted
-                      in RF fields, we understand the rigorous demands of hardware interaction,
-                      system testing, and signal processing.
-                    </p>
-                    <p>
-                      Our past portfolio includes critical work with major telecommunication carriers and leading network equipment manufacturers, alongside Federal Government agencies and City municipalities. We ensure that complex RF networks, UI, and software infrastructure are secure, accessible, and highly robust.
-                    </p>
-                    <p className="font-medium text-slate-900">
-                      Now, we are channeling this enterprise-grade discipline into building powerful, intuitive software tools 
-                      designed specifically to help RF professionals and engineers work smarter.
-                    </p>
-                  </div>
-
-                  <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {["System Design", "Signal Processing", "Compliance", "UI/UX for Gov"].map((item) => (
-                      <div key={item} className="flex items-center gap-2 text-slate-700">
-                        <Icon name="activity" className="text-blue-500" size={16} />
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-12 lg:mt-0 relative">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-cyan-500 rounded-2xl transform rotate-3 opacity-10"></div>
-
-                  <div className="bg-slate-900 rounded-2xl p-8 text-white relative shadow-2xl">
-                    <div className="flex items-center gap-4 mb-8">
-                      <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                        <Icon name="map-pin" className="text-blue-400" size={24} />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-lg">Proudly Local</h3>
-                        <p className="text-slate-400 text-sm">Based in Phoenix, Arizona</p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-6">
-                      <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                        <h4 className="font-semibold text-blue-300 mb-2">Government & Federal Background</h4>
-                        <p className="text-sm text-slate-300">
-                          Experience adhering to strict federal standards for software and UI accessibility.
-                        </p>
-                      </div>
-                      <div className="p-4 bg-white/5 rounded-lg border border-white/10">
-                        <h4 className="font-semibold text-cyan-300 mb-2">RF & Hardware Engineering</h4>
-                        <p className="text-sm text-slate-300">
-                          Deep understanding of the physical layer, coding for devices, and comprehensive system testing.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Contact / Support Section */}
-          <section id="support" className="py-24 bg-white border-t border-slate-100">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="bg-blue-50 rounded-3xl p-8 md:p-12 text-center border border-blue-100">
-                <h2 className="text-3xl font-bold text-slate-900 mb-4">Product Support & Feedback</h2>
-                <p className="text-slate-600 mb-8 max-w-xl mx-auto">
-                  Have a question about 5G Architect, or a feature request for our interactive web simulators? 
-                  Our team is dedicated to supporting the tools we build.
-                </p>
-
-                <div className="flex flex-col md:flex-row justify-center gap-6 items-center">
-                  <a
-                    href="mailto:support@cybazsolutions.com"
-                    className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all w-full md:w-auto"
-                  >
-                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-600 transition-colors">
-                      <Icon name="life-buoy" className="text-blue-600 group-hover:text-white" size={20} />
-                    </div>
-                    <div className="text-left">
-                      <p className="text-xs text-slate-500 font-semibold uppercase">App Support</p>
-                      <p className="text-slate-900 font-medium">support@cybazsolutions.com</p>
-                    </div>
-                  </a>
-
-                  <a
-                    href="mailto:info@cybazsolutions.com"
-                    className="group flex items-center gap-4 bg-white px-6 py-4 rounded-xl shadow-sm border border-slate-200 hover:border-cyan-300 hover:shadow-md transition-all w-full md:w-auto"
-                  >
-                    <div className="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center group-hover:bg-cyan-600 transition-colors">
-                      <Icon name="message-square" className="text-cyan-600 group-hover:text-white" size={20} />
-                    </div>
-                    <div className="text-left">
-                      <p className="text-xs text-slate-500 font-semibold uppercase">General Feedback</p>
-                      <p className="text-slate-900 font-medium">info@cybazsolutions.com</p>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Footer */}
-          <footer className="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div className="col-span-1 md:col-span-2">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Icon name="cpu" className="text-blue-600" size={24} />
-                    <span className="font-bold text-lg text-slate-900">CYBAZ SOLUTIONS</span>
-                  </div>
-                  <p className="text-slate-500 max-w-xs text-sm">
-                    Building professional-grade software and engineering tools for the telecommunications industry.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-4">Products & Resources</h4>
-                  <ul className="space-y-2 text-sm text-slate-600">
-                    <li><a href="5g_arch.html" className="hover:text-blue-600">5G Architect App</a></li>
-                    <li><a href="5g_arch.html#tutorials" className="hover:text-blue-600">Web Simulators</a></li>
-                    <li><a href="#background" className="hover:text-blue-600">Our Domain Expertise</a></li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-slate-900 mb-4">Support</h4>
-                  <ul className="space-y-2 text-sm text-slate-600">
-                    <li><a href="mailto:support@cybazsolutions.com" className="hover:text-blue-600">support@cybazsolutions.com</a></li>
-                    <li><a href="mailto:info@cybazsolutions.com" className="hover:text-blue-600">info@cybazsolutions.com</a></li>
-                    <li className="pt-2 text-slate-400">Phoenix, Arizona</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-slate-400 text-sm">&copy; {year} Cybaz Solutions LLC. All rights reserved.</p>
-                <div className="flex gap-6 text-sm text-slate-500">
-                  <a href="#" className="hover:text-slate-900">Privacy Policy</a>
-                  <a href="#" className="hover:text-slate-900">Terms of Service</a>
-                </div>
-              </div>
-            </div>
-          </footer>
-        </div>
-      );
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<CybazWebsite />);
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mug Monitor — A better companion app for Ember mugs</title>
+  <meta name="description" content="Mug Monitor is an independent companion app for compatible Ember mugs. Monitor temperature and battery, get ready alerts, reconnect in the background, and check your mug from Apple Watch or Wear OS.">
+  <link rel="canonical" href="https://www.cybazsolutions.com/">
+  <meta property="og:title" content="Mug Monitor — A better companion for your Ember mug">
+  <meta property="og:description" content="Reliable connection, glanceable temperature, ready alerts, and smartwatch support on iPhone and Android.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cybazsolutions.com/">
+  <meta property="og:image" content="https://www.cybazsolutions.com/MugMonitorReady.png">
+  <meta name="theme-color" content="#fffdf8">
+  <link rel="icon" href="MugMonitorIcon.png">
+  <link rel="stylesheet" href="site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Mug Monitor",
+    "operatingSystem": "iOS, Android, watchOS, Wear OS",
+    "applicationCategory": "UtilitiesApplication",
+    "description": "An independent companion app for compatible Ember mugs with temperature monitoring, alerts, background reconnect, and smartwatch support.",
+    "url": "https://www.cybazsolutions.com/",
+    "author": { "@type": "Person", "name": "Matt Hunsaker" },
+    "downloadUrl": [
+      "https://play.google.com/store/apps/details?id=com.cybaz.coffee",
+      "https://apps.apple.com/app/id6758961574"
+    ]
+  }
   </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="./" aria-current="page"><img src="MugMonitorIcon.png" alt=""><span>Mug Monitor</span></a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#guides">Guides</a>
+        <a href="about.html">About</a>
+        <a href="other-apps.html">Other apps</a>
+        <a href="faq-ios.html">iOS help</a>
+        <a href="faq-android.html">Android help</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Independent companion app for compatible Ember mugs</p>
+          <h1>Spend less time checking your mug.</h1>
+          <p class="lede">Mug Monitor keeps temperature and battery status close at hand, alerts you when your drink is ready, and helps your mug reconnect when you come back.</p>
+          <div class="store-row" aria-label="Download Mug Monitor">
+            <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.cybaz.coffee" target="_blank" rel="noopener"><img src="GetItOnGooglePlay.png" alt="Get Mug Monitor on Google Play"></a>
+            <a class="store-badge" href="https://apps.apple.com/app/id6758961574" target="_blank" rel="noopener"><img src="Download_on_the_App_Store_Badge.svg" alt="Download Mug Monitor on the App Store"></a>
+          </div>
+          <p class="microcopy">Free core controls · 7-day Premium trial · No account required by Mug Monitor</p>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card"><img src="MugMonitorIcon.png" alt="Mug Monitor icon showing a warm mug and rising steam"></div>
+          <div class="floating-note">Built by an Ember owner who wanted a reliable, glanceable way to keep tabs on his coffee.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Made for everyday use</p>
+          <h2>Your mug status, where you already look.</h2>
+          <p>Use Mug Monitor in the foreground for free. Premium adds background monitoring, smartwatch visibility, Ready to Drink alerts, LED pulsing, and supported reconnect features.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <span class="icon-chip">At a glance</span>
+            <h3>Temperature and battery</h3>
+            <p>See the current drink temperature, target, battery level, and mug state without digging through menus.</p>
+          </article>
+          <article class="card">
+            <span class="icon-chip">Less babysitting</span>
+            <h3>Ready alerts</h3>
+            <p>Get the normal Perfect alert or choose an earlier Ready to Drink range when you prefer the first sip a little hotter.</p>
+          </article>
+          <article class="card">
+            <span class="icon-chip">Come back and connect</span>
+            <h3>Background recovery</h3>
+            <p>Background monitoring helps keep status current. Supported Android phones can also wake Mug Monitor when the mug appears nearby.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tint">
+      <div class="container feature-split">
+        <div class="media phone"><img src="MM_phoneAndWatch.png" alt="Mug Monitor showing 135 degrees on an iPhone and Apple Watch" loading="lazy"></div>
+        <div>
+          <p class="eyebrow">iPhone + Apple Watch</p>
+          <h2>Follow your drink from the Lock Screen or your wrist.</h2>
+          <p>Mug Monitor uses an iPhone Live Activity to show your mug on the Lock Screen, Dynamic Island on supported iPhones, and the Apple Watch Smart Stack on watchOS 11 or later.</p>
+          <ul class="check-list">
+            <li>No separate Apple Watch app to install</li>
+            <li>Temperature, mug state, and battery at a glance</li>
+            <li>Keep your iPhone connected to the mug</li>
+          </ul>
+          <p><a class="button secondary" href="ember-mug-temperature-on-watch.html#apple-watch">Apple Watch setup</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container feature-split reverse">
+        <div>
+          <p class="eyebrow">Android + Wear OS</p>
+          <h2>Check your mug without reaching for your phone.</h2>
+          <p>Install the Mug Monitor companion app on a compatible Wear OS watch, then keep the Android phone connected to the mug. The watch receives its status through the phone.</p>
+          <ul class="check-list">
+            <li>Dedicated Wear OS companion app</li>
+            <li>Live temperature, state, and battery</li>
+            <li>One-time Premium purchase on Android</li>
+          </ul>
+          <p><a class="button secondary" href="ember-mug-temperature-on-watch.html#wear-os">Wear OS setup</a></p>
+        </div>
+        <div class="media"><img src="WorksWithWearOS.png" alt="Mug Monitor running on an Android phone and Wear OS watch beside a mug" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="section tint">
+      <div class="container feature-split">
+        <div class="media"><img src="MugMonitorReady.png" alt="Diagram showing the Mug Monitor Ready to Drink alert range" loading="lazy"></div>
+        <div>
+          <p class="eyebrow">Ready to Drink</p>
+          <h2>Know when the first sip is ready.</h2>
+          <p>Set an earlier alert from 1–20°F above your target. Mug Monitor waits until the drink remains in that cooling range for one minute, helping avoid a premature alert while you are still filling the mug.</p>
+          <p class="microcopy">Available with Premium or during the free trial on iOS and Android. The upper range is capped at 145°F.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="guides">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Practical Ember help</p>
+          <h2>Start with the problem you are trying to solve.</h2>
+          <p>These guides cover the common connection and watch questions I see as Mug Monitor’s developer and an Ember user.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card guide-card">
+            <span class="icon-chip">Connection guide</span>
+            <h3><a href="ember-mug-keeps-disconnecting.html">Ember mug keeps disconnecting: troubleshooting and app options</a></h3>
+            <p>Work through range, competing connections, Bluetooth, pairing, background restrictions, and the point when a reset actually makes sense.</p>
+          </article>
+          <article class="card guide-card">
+            <span class="icon-chip">Watch guide</span>
+            <h3><a href="ember-mug-temperature-on-watch.html">How to see your Ember mug temperature on your watch</a></h3>
+            <p>Set up Apple Watch through Live Activities or install the dedicated Mug Monitor app on a Wear OS watch.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container profile">
+        <img src="MugMonitorIcon.png" alt="Mug Monitor app icon" loading="lazy">
+        <div>
+          <p class="eyebrow">A hobby that grew</p>
+          <h2>Built by Matt Hunsaker.</h2>
+          <p>I work in 5G and LTE engineering, but Mug Monitor is the app I build for fun. It started because I wanted my own Ember mug to reconnect reliably and show its status without making me open an app every few minutes.</p>
+          <p><a class="button" href="about.html">About me and the app</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>Mug Monitor by Cybaz Solutions</strong>
+        <p class="legal">Mug Monitor is an independent, unofficial companion app. It is not affiliated with, endorsed by, or sponsored by Ember Technologies, Inc. Ember and related names are trademarks of their respective owners.</p>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="about.html">About</a>
+        <a href="other-apps.html">Other apps</a>
+        <a href="mailto:matt@cybazsolutions.com">Contact Matt</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

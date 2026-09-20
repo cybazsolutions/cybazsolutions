@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ember mug keeps disconnecting? Troubleshooting and app options</title>
+  <meta name="description" content="If your Ember mug keeps disconnecting, work through these Bluetooth, pairing, background, and competing-connection checks before resetting it. Includes iPhone and Android app options.">
+  <link rel="canonical" href="https://www.cybazsolutions.com/ember-mug-keeps-disconnecting.html">
+  <meta property="og:title" content="Ember mug keeps disconnecting? A practical troubleshooting guide">
+  <meta property="og:description" content="Try these checks for range, competing phones, Bluetooth, pairing, app background restrictions, and resets.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.cybazsolutions.com/ember-mug-keeps-disconnecting.html">
+  <meta property="og:image" content="https://www.cybazsolutions.com/Silent.png">
+  <link rel="icon" href="MugMonitorIcon.png">
+  <link rel="stylesheet" href="site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Troubleshoot an Ember mug that keeps disconnecting",
+    "description": "Connection checks for a compatible Ember mug on iPhone or Android.",
+    "author": { "@type": "Person", "name": "Matt Hunsaker" },
+    "step": [
+      { "@type": "HowToStep", "name": "Wake and move close to the mug", "text": "Place the charged mug near the phone and make sure it is awake." },
+      { "@type": "HowToStep", "name": "Disconnect competing devices", "text": "Turn off Bluetooth on another phone or tablet that may already be connected." },
+      { "@type": "HowToStep", "name": "Restart Bluetooth", "text": "Turn Bluetooth off in system settings, wait 30 seconds, and turn it on again." },
+      { "@type": "HowToStep", "name": "Retry the connection", "text": "Open the mug app and reconnect. Use model-specific pairing mode if the mug is not found." },
+      { "@type": "HowToStep", "name": "Forget and re-pair if needed", "text": "Remove the mug from Bluetooth settings, put it in pairing mode, and pair it again." },
+      { "@type": "HowToStep", "name": "Reset only as a last resort", "text": "Follow the official reset instructions for the exact mug model only after simpler steps fail." }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#article">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="./"><img src="MugMonitorIcon.png" alt=""><span>Mug Monitor</span></a>
+      <div class="nav-links">
+        <a href="./#features">Features</a>
+        <a href="./#guides" aria-current="page">Guides</a>
+        <a href="about.html">About</a>
+        <a href="faq-ios.html">iOS help</a>
+        <a href="faq-android.html">Android help</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <header class="article-hero">
+      <div class="container">
+        <p class="eyebrow">Connection guide</p>
+        <h1>Ember mug keeps disconnecting: troubleshooting and app options</h1>
+        <p class="lede">Most reconnect problems come down to mug state, range, a second device holding the connection, stale Bluetooth pairing, or the phone restricting background work. Start with the reversible checks below.</p>
+        <p class="article-meta">Written by Matt Hunsaker, developer of Mug Monitor and an Ember mug owner · Updated September 2026</p>
+      </div>
+    </header>
+
+    <div class="section">
+      <div class="container article-layout">
+        <article class="article" id="article">
+          <div class="callout">
+            <strong>Quick answer:</strong> Wake and charge the mug, move it close to the phone, disconnect any other phone using it, toggle Bluetooth off for 30 seconds, and retry. Forget and re-pair only if that fails. Save a factory reset for last, and use the instructions for your exact mug model.
+          </div>
+
+          <h2 id="quick-check">A 60-second connection check</h2>
+          <div class="step">
+            <span class="step-index">1</span>
+            <div><h3>Wake the mug and move close</h3><p>Put the mug on its charged coaster or press its power button, then place it within a few feet of the phone. An empty or sleeping mug may not advertise continuously.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-index">2</span>
+            <div><h3>Rule out a competing connection</h3><p>Temporarily turn Bluetooth off on other phones or tablets that have used the mug. A mug can be remembered by several devices, but an active connection from one device can prevent another from taking over.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-index">3</span>
+            <div><h3>Restart Bluetooth from system settings</h3><p>Turn Bluetooth off, wait about 30 seconds, and turn it back on. Then reopen your mug app and try again. This clears a surprising number of stale Bluetooth sessions.</p></div>
+          </div>
+
+          <figure>
+            <img src="Silent.png" alt="Mug Monitor Android notification showing temperature, mug state, and battery" loading="lazy">
+            <figcaption>Once connected, Mug Monitor can keep the current temperature, state, and battery visible in an Android notification.</figcaption>
+          </figure>
+
+          <h2 id="repair">If it still will not reconnect</h2>
+          <h3>Close the app that is not in use</h3>
+          <p>Two mug apps should not compete for the same Bluetooth connection. If you are trying Mug Monitor, fully close the official app first. If you are troubleshooting the official app, close Mug Monitor. Some mugs may still need the official app once for initial authorization or firmware updates.</p>
+
+          <h3>Use pairing mode before using reset</h3>
+          <p>Pairing mode and a factory reset are different actions. For a ceramic Ember Mug or Mug 2, hold the bottom button for roughly 6–8 seconds and release it when the LED blinks blue. Ember publishes the full <a href="https://support.ember.com/en-US/ember-mug-how-to-pair-1757457" target="_blank" rel="noopener">ceramic mug pairing instructions</a>. Travel Mug controls and indicators differ, so use the instructions for that model.</p>
+
+          <h3>Forget and re-pair</h3>
+          <p>On iPhone, open <strong>Settings → Bluetooth</strong>, tap the information button beside the mug, and choose <strong>Forget This Device</strong>. On Android, open <strong>Settings → Connected devices → Bluetooth</strong>, open the mug’s settings, and choose <strong>Forget</strong> or <strong>Unpair</strong>. Put the mug into pairing mode, then reconnect from the app.</p>
+
+          <h3>Factory reset only after the simpler checks</h3>
+          <p>A reset erases the mug’s pairing state, so it creates more setup work and is rarely the best first step. Ember’s ceramic-mug procedure uses a longer button hold until the LED flashes red. Follow <a href="https://support.ember.com/en-US/ember-mug-how-to-re-pair-my-ember-1757525" target="_blank" rel="noopener">Ember’s current re-pairing guide</a> rather than applying ceramic-mug timing to a Travel Mug.</p>
+
+          <h2 id="background">When it disconnects only in the background</h2>
+          <p>If the mug connects while the app is open but loses updates after the screen locks, focus on phone permissions and power management:</p>
+          <ul>
+            <li>Allow Bluetooth or Nearby Devices access.</li>
+            <li>Allow notifications if you want status and ready alerts.</li>
+            <li>On Android, remove aggressive battery restrictions for the mug app.</li>
+            <li>On iPhone, avoid force-quitting the app when you want background monitoring or Live Activities.</li>
+            <li>Check that background monitoring is enabled and that Premium or the trial is active if the feature requires it.</li>
+          </ul>
+          <p>On supported Android phones, Mug Monitor can use Android’s Companion Device support to wake and attempt a reconnect when the mug appears nearby. This requires Android 12 or newer, manufacturer support, and one-time setup in Mug Monitor. It improves automatic recovery; it cannot guarantee an uninterrupted Bluetooth connection.</p>
+
+          <h2 id="options">App options for an Ember mug</h2>
+          <table class="comparison">
+            <thead><tr><th>Option</th><th>Good fit when…</th><th>Keep in mind</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Official Ember app</strong></td><td>You need official setup, firmware updates, account features, or manufacturer support.</td><td>Close it if another app is trying to connect to the same mug.</td></tr>
+              <tr><td><strong>Mug Monitor</strong></td><td>You want foreground controls, glanceable status, Ready to Drink alerts, background monitoring, or smartwatch support.</td><td>It is an independent app. Some advanced features require Premium, and hardware faults still need Ember support.</td></tr>
+              <tr><td><strong>Mug without an app</strong></td><td>You are happy with the mug’s stored/default target and do not need live status or controls.</td><td>You lose app-based changes, alerts, and battery information.</td></tr>
+            </tbody>
+          </table>
+
+          <h2 id="demo">Short demonstration: leave, return, reconnect</h2>
+          <ol>
+            <li>Connect the mug in Mug Monitor and enable background monitoring.</li>
+            <li>On a supported Android 12+ phone, complete <strong>Set up Android wake-up</strong> in Mug Monitor Settings.</li>
+            <li>Walk out of Bluetooth range. The app will show that the connection has been lost.</li>
+            <li>Return with the phone. When Android detects the associated mug, it can wake Mug Monitor and attempt to restore monitoring.</li>
+          </ol>
+          <p>This test demonstrates automatic recovery, not a permanent connection. Mug power, range, phone restrictions, another connected device, and whether the mug is advertising all affect timing.</p>
+
+          <h2 id="supported">Supported devices and limits</h2>
+          <ul>
+            <li><strong>Android phone app:</strong> Android 10 or later. Automatic system wake-up requires Android 12 or later and compatible Companion Device support.</li>
+            <li><strong>Wear OS:</strong> A compatible Wear OS 3+ watch where the Mug Monitor watch app is offered by Google Play. The watch reads data through the phone.</li>
+            <li><strong>iPhone:</strong> Use the current App Store version on a compatible iPhone. Apple Watch display uses an iPhone Live Activity.</li>
+            <li><strong>Apple Watch:</strong> watchOS 11 or later for Live Activities in the Smart Stack. There is no separate Mug Monitor watch app to install.</li>
+            <li><strong>Mugs:</strong> Designed for compatible Ember mugs. Hardware, firmware, and regional differences can affect behavior.</li>
+          </ul>
+
+          <div class="callout">
+            <h3>Try Mug Monitor</h3>
+            <p>The core Android and iPhone controls are free. New users can try Premium features for seven days.</p>
+            <div class="store-row">
+              <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.cybaz.coffee" target="_blank" rel="noopener"><img src="GetItOnGooglePlay.png" alt="Get Mug Monitor on Google Play"></a>
+              <a class="store-badge" href="https://apps.apple.com/app/id6758961574" target="_blank" rel="noopener"><img src="Download_on_the_App_Store_Badge.svg" alt="Download Mug Monitor on the App Store"></a>
+            </div>
+          </div>
+
+          <h2 id="hardware">When this is probably a hardware problem</h2>
+          <p>If the mug will not power on, charge, enter pairing mode, or communicate with any compatible device, an app cannot repair it. For charging-coaster problems, unusual LED behavior, battery failures, replacement parts, or warranty questions, use <a href="https://support.ember.com/" target="_blank" rel="noopener">official Ember support</a>.</p>
+        </article>
+
+        <aside class="toc" aria-label="On this page">
+          <strong>On this page</strong>
+          <a href="#quick-check">60-second check</a>
+          <a href="#repair">Re-pairing</a>
+          <a href="#background">Background disconnects</a>
+          <a href="#options">App options</a>
+          <a href="#demo">Demonstration</a>
+          <a href="#supported">Supported devices</a>
+          <a href="#hardware">Hardware problems</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>Mug Monitor by Cybaz Solutions</strong><p class="legal">Written by Matt Hunsaker, Mug Monitor’s developer. Mug Monitor is independent and is not affiliated with or endorsed by Ember Technologies, Inc.</p></div>
+      <div class="footer-links"><a href="./">Mug Monitor</a><a href="ember-mug-temperature-on-watch.html">Watch guide</a><a href="mailto:matt@cybazsolutions.com">Contact Matt</a></div>
+    </div>
+  </footer>
+</body>
+</html>

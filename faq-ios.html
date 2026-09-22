@@ -34,3 +34,254 @@
             display: none;
         }
         details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; margin-top: -10px}
+            100%  {opacity: 1; margin-top: 0px}
+        }
+        /* Custom plus/minus icon for summary */
+        summary::after {
+            content: '+';
+            float: right;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: #0d9488;
+            transition: transform 0.2s ease;
+        }
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+        summary:focus-visible { outline: 2px solid #0d9488; outline-offset: 6px; }
+        .cursor-text a { color: #0d9488; text-decoration: underline; overflow-wrap: anywhere; }
+        @media (prefers-reduced-motion: reduce) {
+            details[open] summary ~ * { animation: none; }
+            summary::after { transition: none; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased font-sans selection:bg-brand-100 selection:text-brand-900">
+
+    <div class="max-w-3xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 mb-4 shadow-sm">
+                <!-- Coffee Cup Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 13.5v5.25a3 3 0 003 3h9a3 3 0 003-3v-5.25M4.5 13.5L3 12m1.5 1.5l1.5-1.5m13.5 1.5l1.5-1.5m-1.5 1.5l-1.5-1.5" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Mug Monitor for iOS
+            </h1>
+            <p class="mt-4 text-lg text-gray-500">
+                Frequently Asked Questions & Troubleshooting
+            </p>
+            <p class="mt-3 text-sm text-gray-500">Independent, unofficial companion app for compatible Ember mugs.</p>
+            <nav class="mt-4 text-sm text-brand-600" aria-label="Support navigation">
+                <a href="./" class="underline">Mug Monitor</a> &middot;
+                <a href="ember-app-alternative.html" class="underline">Getting started</a> &middot;
+                <a href="./#pricing" class="underline">Free &amp; Premium</a> &middot;
+                <a href="ember-mug-temperature-on-watch.html#apple-watch" class="underline">Apple Watch guide</a> &middot;
+                <a href="faq-android.html" class="underline">Android FAQ</a>
+            </nav>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="space-y-4">
+
+            <!-- Connection Issues Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Connectivity Issues</h2>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    My app won't connect automatically or gives a "Can't Connect" error.
+                </summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Try these steps in order. A nearby mug can still be unavailable if another phone is connected or it is not advertising for setup.</p>
+                    <ol class="list-decimal pl-5 space-y-3">
+                        <li><strong>Check power and permissions:</strong> Charge the mug, keep it near your iPhone, and enable Bluetooth. In <strong>Settings &gt; Apps &gt; Mug Monitor</strong>, allow Bluetooth access. On older iOS versions, look directly under <strong>Settings &gt; Mug Monitor</strong>.</li>
+                        <li><strong>Disconnect another phone first:</strong> Temporarily turn Bluetooth off on any other phone or tablet connected to the mug. Being paired is not the same as currently being connected; you do not need to erase another phone's pairing as the first step.</li>
+                        <li><strong>Official app interference:</strong> If opening the official Ember app establishes the connection immediately, it's possible that app is holding onto the Bluetooth signal in the background. Try force-closing the official app to see if Mug Monitor connects more reliably.</li>
+                        <li><strong>Retry in Mug Monitor:</strong> Open the app and connect. If the mug is not found, follow the model-specific pairing steps below. You can also turn Bluetooth off and back on in the iPhone Settings app.</li>
+                        <li><strong>Forget and re-pair only if needed:</strong> In <strong>Settings &gt; Bluetooth</strong>, tap the mug's information button and select <strong>Forget This Device</strong>. Put the mug in pairing mode, then reconnect in Mug Monitor.</li>
+                    </ol>
+                    <p class="pt-2 text-sm italic">For background features, check your Premium/trial access and monitoring settings. Android's system wake-up setup is not an iOS setting; see the morning Live Activities answer below for the iPhone behavior.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    Do I need to keep the official app installed?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>The official Ember app does not need to run alongside Mug Monitor for everyday use. You may still need it for initial authorization on some mugs or firmware updates. If connections conflict, close the official app before reconnecting with Mug Monitor.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    The app says my mug is "Read Only".
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Some mugs need initial authorization through the official Ember app before third-party controls work. Connect successfully in the official app, then close it and reconnect in Mug Monitor. If controls are still unavailable, contact app support with your mug model and the exact message; do not keep factory-resetting the mug.</p>
+                </div>
+            </details>
+
+            <details id="pairing" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">How do I enter pairing mode? Is that the same as a reset?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p><strong>Pairing and resetting are different.</strong> Release the button as soon as the pairing indicator appears.</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Ember Mug / Mug 2 (ceramic):</strong> Hold the bottom power button for about 6-8 seconds, until the light blinks blue. See <a href="https://support.ember.com/en-US/ember-mug-how-to-pair-1757457">Ember's ceramic mug pairing guide</a>.</li>
+                        <li><strong>Travel Mug 2:</strong> Hold the bottom power button for about 5 seconds until the display says <strong>PAIR</strong>. See <a href="https://support.ember.com/en-US/travel-mug%C2%B2-how-to-pair-1757430">Ember's Travel Mug 2 pairing guide</a>.</li>
+                        <li><strong>Other models:</strong> Follow the <a href="https://ember.com/pages/instruction-manuals">instructions for your exact model</a>; button timing and indicators differ.</li>
+                    </ul>
+                    <p>A ceramic mug's factory reset uses a longer hold (about 15 seconds) and a red indicator. It clears the pairing state and requires re-pairing. Use <a href="https://support.ember.com/en-US/ember-mug-how-to-reset-1757480">Ember's reset instructions</a> only when simpler troubleshooting has failed. Do not apply ceramic-mug reset timing to a Travel Mug.</p>
+                    <p>A red light alone is not enough to diagnose a battery fault. If the mug will not power on, charge, or enter pairing mode, see Hardware Support below.</p>
+                </div>
+            </details>
+
+            <!-- Features Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Features & Integrations</h2>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    How do I enable Live Activities / Dynamic Island?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Live Activities are a Premium feature, also available during an active trial. Update Mug Monitor and iOS to versions supported by your device, then:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-2">
+                        <li>Go to <strong>iPhone Settings &gt; Apps &gt; Mug Monitor &gt; Live Activities</strong> and turn on <strong>Allow Live Activities</strong>. On older iOS versions, find Mug Monitor directly in Settings.</li>
+                        <li>Open Mug Monitor, check that background monitoring is enabled in its Settings, and connect to the mug.</li>
+                        <li>Start a monitoring session in the app, and swipe up to go to your home screen. The Live Activity should automatically appear on your Lock Screen and in the Dynamic Island (on supported iPhones).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details id="live-activities-recovery" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">Live Activities stopped after I tapped Don't Allow. How do I restore them?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>The iPhone's system permission overrides settings inside Mug Monitor. You normally do not need to reinstall the app.</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Open the iPhone's <strong>Settings &gt; Apps &gt; Mug Monitor &gt; Live Activities</strong>.</li>
+                        <li>Turn <strong>Allow Live Activities</strong> on. On older iOS versions, use <strong>Settings &gt; Mug Monitor</strong>.</li>
+                        <li>Reopen Mug Monitor, confirm Premium/trial access and a mug connection, then return to your Home Screen or Lock Screen.</li>
+                    </ol>
+                    <p>If the setting is missing or this does not help, update the app and iOS first. Include screenshots of both the iPhone permission page and app Settings when contacting support. Missing activities can also be caused by a connection problem or an app issue, not just permissions.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    Why can't I find Mug Monitor as an Apple Watch app?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Mug Monitor's Apple Watch experience uses the iPhone's <strong>Live Activity in the Smart Stack</strong>, rather than a separate watch app that you install and launch. This differs from the Android Wear OS companion app.</p>
+                    <p class="mt-2">With <strong>watchOS 11 or later</strong>, first connect Mug Monitor on your iPhone and verify that its Live Activity is visible on the phone. Then turn the Digital Crown upward or swipe up from the watch face to view the Smart Stack. Keep the watch connected to the iPhone.</p>
+                    <p class="mt-2 text-sm italic">A Live Activity is temporary, not a permanently pinned watch-face complication. If it ends on the phone, reopen Mug Monitor to start a new monitoring session.</p>
+                    <p class="mt-2 text-sm italic"><strong>Watch Settings:</strong> If the widget still isn't showing, check your Apple Watch directly. Press the Digital Crown to open apps, go to <strong>Settings &gt; Smart Stack &gt; Live Activities</strong>, and verify that "Allow Live Activities" is toggled on.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    How do Live Activities work on a Mac?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>On <strong>macOS Tahoe 26 or later</strong>, a supported Mac can display your iPhone's Live Activities in the menu bar after iPhone Mirroring is set up. Check <strong>System Settings &gt; Notifications &gt; Allow notifications from iPhone</strong> and enable <strong>Allow Live Activities from iPhone</strong>. An active mirroring window is not required for every update. Device, account, and regional requirements apply; see <a href="https://support.apple.com/en-euro/120684">Apple's setup and troubleshooting guide</a>.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    What does the Wake Up Notification do for morning Live Activities?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>The Wake Up Notification prompts you to open Mug Monitor so it can start fresh live updates for the day. Tap it, or open Mug Monitor yourself and check the connection. Allow notifications if you want to receive the reminder, and avoid force-quitting the app when you want background monitoring.</p>
+                    <p class="mt-2">A Live Activity can be active for up to eight hours, then may remain on the Lock Screen for up to four additional hours without live updates. A visible old card does not prove the mug is still connected. These are <a href="https://developer.apple.com/documentation/activitykit/displaying-live-data-with-live-activities">Apple's Live Activity limits</a>, not a promise that every activity will last that long.</p>
+                </div>
+            </details>
+
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Temperature Alerts &amp; Target Settings</h2>
+            <details id="ready-to-drink" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">How does Ready to Drink work? (Premium Feature)</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Ready to Drink gives you an earlier cooling alert without changing the mug's heater target. It is <strong>off by default</strong>. In Mug Monitor Settings, enable the Ready to Drink/ready-above-target option and choose your offset. Premium or an active trial is required.</p>
+                    <p>The default is <strong>5&deg;F above target</strong>, adjustable up to 20&deg;F above target and capped at the app's mug maximum. For a <strong>132&deg;F target and +5&deg;F offset</strong>, the ready range is above 132&deg;F through 137&deg;F.</p>
+                    <p>The one-minute confirmation begins when the cooling drink enters that range at 137&deg;F. It must stay in the qualifying range for the minute; leaving the range cancels the pending alert. This helps avoid brief readings while filling. The alert does not guarantee a drink is safe to sip.</p>
+                    <p>You can optionally keep the normal <strong>Perfect</strong> notification enabled as well, for another alert when the drink reaches the target.</p>
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">Why didn't I get a Ready to Drink alert?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Check that Ready to Drink is enabled, Premium/trial access is active, background monitoring is enabled, and the app is receiving current temperatures. Allow Mug Monitor notifications in iPhone Settings and check Focus or notification-silencing settings.</p>
+                    <p>A brief temperature reading in the range is not enough: the cooling drink must remain there for one minute. Repeat alerts are limited to avoid notifications every time the temperature drifts. At the maximum target, there is no higher advance-alert range.</p>
+                </div>
+            </details>
+            <details id="target-temperature" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">Why did my target temperature change after the mug went to sleep?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>The target stored on the mug is separate from a Ready to Drink alert threshold. If it changes while Mug Monitor is not connected, that alone does not establish an app fault; check the mug's own controls and any other phone or app that may be setting it.</p>
+                    <p>In the latest iOS version, Settings includes an optional behavior to restore your preferred target when the mug wakes. Enable that option if you want Mug Monitor to reapply your preference instead of just using the target reported by the mug. It needs a working connection to change the mug; it cannot alter a disconnected mug.</p>
+                    <p>If you do not see the option, update Mug Monitor. If the target still changes unexpectedly, send support the mug model, app version, desired target, reported target, and when the change happens. Do not assume a firmware fault without further testing.</p>
+                </div>
+            </details>
+
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Premium &amp; Hardware Support</h2>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">What is free, and what happens after the trial?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Core foreground mug monitoring and controls remain free. Advanced background features, Live Activities/Apple Watch integration, LED pulsing, and Ready to Drink require Premium or an active <strong>7-day trial</strong>.</p>
+                    <p>When trial access ends without Premium, those features stop; the free core app remains available. Updating does not restart an expired trial. iOS Premium is a small annual subscription. See current pricing in the app.</p>
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">How do I restore Premium, manage my subscription, or request a refund?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Use the same Apple Account used for the purchase and the app's <strong>Restore Purchases</strong> option in its Premium/purchase screen. If access is still missing, update and reopen the app while online, then contact support with the app version and purchase details. Do not send passwords or payment-card information.</p>
+                    <p>iOS Premium renews yearly unless canceled. Manage or cancel it in your Apple Account subscriptions.</p>
+                    <p>For an eligible purchase, follow <a href="https://support.apple.com/en-au/118223">Apple's refund instructions</a>. Apple determines eligibility; approval is not guaranteed.</p>
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">My mug will not charge or power on. Can Mug Monitor fix it?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Mug Monitor is an independent third-party app, not Ember's hardware support team. It cannot repair a battery, charging coaster, or a mug that cannot power on or communicate over Bluetooth.</p>
+                    <p>For charging problems, unusual lights, replacement parts, or warranty questions, use <a href="https://support.ember.com/">official Ember support</a> and your model's instructions. For app controls, alerts, or Live Activities, contact Mug Monitor below.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    How do the Tea and Milk Timers work?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>The app includes a built-in timer with two specialized options depending on your beverage:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-2">
+                        <li><strong>Tea Timer:</strong> A standard countdown timer ideal for steeping your favorite teas.</li>
+                        <li><strong>Milk Timer:</strong> Specifically designed for milk-based drinks. When this timer expires, it automatically turns off the mug's heater to prevent the milk from caking and scalding at the bottom of the mug.</li>
+                    </ul>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- Contact Support Footer -->
+        <div class="mt-16 bg-brand-50 rounded-2xl p-8 text-center border border-brand-100">
+            <h3 class="text-xl font-bold text-brand-900">Still need help?</h3>
+            <p class="mt-2 text-brand-700">If you've tried the steps above and are still having trouble, I'm here to help.</p>
+            <p class="mt-4 text-sm text-brand-600 font-medium">Please include your mug model, iPhone model, iOS version, Mug Monitor version, exact error, and whether another phone is connected. For watch issues, include the watch model and watchOS version. Tell us what you tried; remove personal information from screenshots.</p>
+            <a href="mailto:support@cybazsolutions.com?subject=Mug%20Monitor%20iOS%20Support" class="mt-6 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors shadow-sm">
+                Contact Support
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

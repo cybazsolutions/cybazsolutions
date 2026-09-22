@@ -34,3 +34,146 @@
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="./"><img src="MugMonitorIcon.png" alt=""><span>Mug Monitor</span></a>
+      <div class="nav-links">
+        <a href="ember-app-alternative.html">Try another app</a>
+        <a href="./#compatibility">Compatibility</a>
+        <a href="./#pricing">Free &amp; Premium</a>
+        <a href="./#guides" aria-current="page">Guides</a>
+        <a href="about.html">About</a>
+        <a href="faq-ios.html">iOS help</a>
+        <a href="faq-android.html">Android help</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <header class="article-hero">
+      <div class="container">
+        <p class="eyebrow">Smartwatch guide</p>
+        <h1>How to see your Ember mug temperature on your watch</h1>
+        <p class="lede">Mug Monitor puts the temperature, mug state, and battery on Apple Watch or Wear OS. The two platforms work differently, so use the setup that matches your phone.</p>
+        <p class="article-meta">Written by Cybaz Solutions, developer of Mug Monitor · Updated September 2026</p>
+      </div>
+    </header>
+
+    <div class="section">
+      <div class="container article-layout">
+        <article class="article" id="article">
+          <p class="guide-intro">New to third-party mug apps? <a href="ember-app-alternative.html">Learn how Mug Monitor works with your existing Ember mug</a>, including free features and setup.</p>
+          <div class="callout">
+            <strong>Platform difference:</strong> Apple Watch displays the Live Activity created by Mug Monitor on your iPhone; there is no separate watch app. Wear OS uses a dedicated Mug Monitor watch app, with the Android phone passing it data from the mug.
+          </div>
+
+          <h2 id="apple-watch">Apple Watch: use the iPhone Live Activity</h2>
+          <p>Mug Monitor’s Apple Watch experience appears in the Smart Stack on watchOS 11 or later. Your iPhone remains the device connected to the mug.</p>
+
+          <div class="step">
+            <span class="step-index">1</span>
+            <div><h3>Install and connect on iPhone</h3><p>Download Mug Monitor, allow Bluetooth access, and connect your compatible mug. Start the Premium trial or use Premium, then enable background monitoring in Mug Monitor Settings.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-index">2</span>
+            <div><h3>Confirm the Live Activity on iPhone</h3><p>Start monitoring, then leave the app. Check the iPhone Lock Screen or Dynamic Island on a supported iPhone. If the Live Activity is updating there, the phone side is working.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-index">3</span>
+            <div><h3>Open the Smart Stack on Apple Watch</h3><p>From the watch face, turn the Digital Crown upward or swipe up. The Mug Monitor Live Activity should appear near the top of the Smart Stack while active.</p></div>
+          </div>
+
+          <figure>
+            <img src="MM_phoneAndWatch.png" alt="Mug Monitor showing a 135 degree mug on iPhone and Apple Watch" loading="lazy">
+            <figcaption>On Apple Watch, Mug Monitor uses the iPhone’s active Live Activity to show temperature, state, and battery in the Smart Stack.</figcaption>
+          </figure>
+
+          <h3>If the Apple Watch card is missing</h3>
+          <ul>
+            <li>Verify the Mug Monitor Live Activity is visible and updating on the iPhone first.</li>
+            <li>Keep the Apple Watch connected to that iPhone.</li>
+            <li>On the watch, open <strong>Settings → Smart Stack → Live Activities</strong> and enable <strong>Allow Live Activities</strong>.</li>
+            <li>Make sure the watch runs watchOS 11 or later.</li>
+            <li>Allow notifications and Live Activities for Mug Monitor on the iPhone.</li>
+            <li>Open Mug Monitor again if iOS ended the previous monitoring session.</li>
+          </ul>
+
+          <h2 id="wear-os">Wear OS: install the companion watch app</h2>
+          <p>On Android, Mug Monitor has a separate Wear OS app. The phone still owns the Bluetooth connection to the mug; the watch app displays the data supplied by the phone.</p>
+
+          <div class="step">
+            <span class="step-index">1</span>
+            <div><h3>Connect the Android phone</h3><p>Install Mug Monitor from Google Play, connect the mug, and enable <strong>Background Monitoring and Wear OS</strong> in Settings. Wear OS support requires Premium or an active trial.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-index">2</span>
+            <div><h3>Install Mug Monitor on the watch</h3><p>Open Google Play on the watch and find Mug Monitor under <strong>Apps on your phone</strong>, or search for it directly. You can also choose the watch from the Install device picker in Google Play on your phone.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-index">3</span>
+            <div><h3>Open the watch app</h3><p>Keep the watch paired with the Android phone and open Mug Monitor on the watch. Once the phone is receiving current mug data, the watch should show the live temperature, state, and battery.</p></div>
+          </div>
+
+          <figure>
+            <img src="WorksWithWearOS.png" alt="Mug Monitor showing 135 degrees on an Android phone and Wear OS watch" loading="lazy">
+            <figcaption>The Wear OS app displays status relayed by Mug Monitor on the connected Android phone.</figcaption>
+          </figure>
+
+          <h3>If Wear OS shows stale or no data</h3>
+          <ul>
+            <li>Open Mug Monitor on the phone and confirm that the mug is connected and updating.</li>
+            <li>Make sure <strong>Background Monitoring and Wear OS</strong> is enabled.</li>
+            <li>Confirm the phone and watch use the expected Google account and remain connected.</li>
+            <li>Update Mug Monitor on both devices.</li>
+            <li>Remove aggressive battery restrictions from Mug Monitor on the phone.</li>
+            <li>If another phone is connected to the mug, disconnect it before retrying.</li>
+          </ul>
+
+          <h2 id="demo">Short demonstration: coffee to wrist</h2>
+          <ol>
+            <li>Fill the connected mug and set a target temperature in Mug Monitor.</li>
+            <li>Lock the phone and wait while the drink heats or cools.</li>
+            <li>Open the Apple Watch Smart Stack or the Mug Monitor Wear OS app.</li>
+            <li>Watch the displayed temperature move toward the target, then confirm the state changes to Perfect.</li>
+          </ol>
+          <p>The watch reflects data received by the phone. If the phone loses its mug connection, the watch cannot create a separate one.</p>
+
+          <h2 id="supported">Supported devices</h2>
+          <table class="comparison">
+            <thead><tr><th>Setup</th><th>Requirement</th><th>How it works</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Apple Watch</strong></td><td>Compatible iPhone, Apple Watch with watchOS 11+, Premium or trial</td><td>The iPhone connects to the mug and publishes a Live Activity to the watch Smart Stack.</td></tr>
+              <tr><td><strong>Wear OS</strong></td><td>Android 10+ phone, compatible Wear OS 3+ watch offered the app by Google Play, Premium or trial</td><td>The Android phone connects to the mug and relays status to the installed watch app.</td></tr>
+              <tr><td><strong>Phone only</strong></td><td>Compatible iPhone or Android phone</td><td>Core foreground monitoring and controls remain available without a watch.</td></tr>
+            </tbody>
+          </table>
+          <p>Store availability, phone manufacturers, OS versions, mug firmware, and regional support can affect compatibility. Automatic background reconnect is an Android phone feature; it requires Android 12 or later plus compatible Companion Device support.</p>
+
+          <div class="callout">
+            <h3>Get Mug Monitor</h3>
+            <p>Install on your phone first. Premium smartwatch features are included in the seven-day trial for new users.</p>
+            <div class="store-row">
+              <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.cybaz.coffee" target="_blank" rel="noopener"><img src="GetItOnGooglePlay.png" alt="Get Mug Monitor on Google Play"></a>
+              <a class="store-badge" href="https://apps.apple.com/app/id6758961574" target="_blank" rel="noopener"><img src="Download_on_the_App_Store_Badge.svg" alt="Download Mug Monitor on the App Store"></a>
+            </div>
+          </div>
+
+          <p>Need more detail? See the <a href="faq-ios.html">iPhone and Apple Watch FAQ</a> or the <a href="faq-android.html">Android and Wear OS FAQ</a>.</p>
+        </article>
+
+        <aside class="toc" aria-label="On this page">
+          <strong>On this page</strong>
+          <a href="#apple-watch">Apple Watch setup</a>
+          <a href="#wear-os">Wear OS setup</a>
+          <a href="#demo">Demonstration</a>
+          <a href="#supported">Supported devices</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>Mug Monitor by Cybaz Solutions</strong><p class="legal">Published by Cybaz Solutions, Mug Monitor’s developer. Mug Monitor is independent and is not affiliated with or endorsed by Ember Technologies, Inc.</p></div>
+      <div class="footer-links"><a href="./">Mug Monitor</a><a href="ember-mug-keeps-disconnecting.html">Connection guide</a><a href="mailto:support@cybazsolutions.com">Contact</a></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -34,3 +34,247 @@
             display: none;
         }
         details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; margin-top: -10px}
+            100%  {opacity: 1; margin-top: 0px}
+        }
+        /* Custom plus/minus icon for summary */
+        summary::after {
+            content: '+';
+            float: right;
+            font-size: 1.5rem;
+            line-height: 1;
+            color: #0d9488;
+            transition: transform 0.2s ease;
+        }
+        details[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+        summary:focus-visible { outline: 2px solid #0d9488; outline-offset: 6px; }
+        .cursor-text a { color: #0d9488; text-decoration: underline; overflow-wrap: anywhere; }
+        @media (prefers-reduced-motion: reduce) {
+            details[open] summary ~ * { animation: none; }
+            summary::after { transition: none; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased font-sans selection:bg-brand-100 selection:text-brand-900">
+
+    <div class="max-w-3xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-100 text-brand-600 mb-4 shadow-sm">
+                <!-- Coffee Cup Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11.25l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75m-6 6.5l1.5 1.5.75-.75V8.758l2.276-.61a3 3 0 10-3.675-3.675l-.137.508V4.75" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 13.5v5.25a3 3 0 003 3h9a3 3 0 003-3v-5.25M4.5 13.5L3 12m1.5 1.5l1.5-1.5m13.5 1.5l1.5-1.5m-1.5 1.5l-1.5-1.5" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Mug Monitor for Android
+            </h1>
+            <p class="mt-4 text-lg text-gray-500">
+                Frequently Asked Questions & Troubleshooting
+            </p>
+            <p class="mt-3 text-sm text-gray-500">Independent, unofficial companion app for compatible Ember mugs.</p>
+            <nav class="mt-4 text-sm text-brand-600" aria-label="Support navigation">
+                <a href="./" class="underline">Mug Monitor</a> &middot;
+                <a href="ember-app-alternative.html" class="underline">Getting started</a> &middot;
+                <a href="./#pricing" class="underline">Free &amp; Premium</a> &middot;
+                <a href="ember-mug-temperature-on-watch.html#wear-os" class="underline">Wear OS guide</a> &middot;
+                <a href="faq-ios.html" class="underline">iPhone FAQ</a>
+            </nav>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="space-y-4">
+
+            <!-- Connection Issues Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Connectivity Issues</h2>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    My app won't connect automatically or gives a "Can't Connect" error.
+                </summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Try these steps in order. A nearby mug can still be unavailable if another phone is connected or it is not advertising for setup.</p>
+                    <ol class="list-decimal pl-5 space-y-3">
+                        <li><strong>Check power and permissions:</strong> Charge the mug, keep it near your phone, enable Bluetooth, and allow Mug Monitor's requested Nearby devices/Bluetooth permissions. Older Android versions may also require location permission and Location to be on for scanning.</li>
+                        <li><strong>Disconnect another phone first:</strong> Temporarily turn Bluetooth off on any other phone or tablet connected to the mug. Being paired is not the same as currently being connected; you do not need to erase another phone's pairing as the first step.</li>
+                        <li><strong>Official app interference:</strong> If opening the official Ember app establishes the connection immediately, it's possible that app is holding onto the Bluetooth signal in the background. Try force-closing the official app to see if Mug Monitor connects more reliably.</li>
+                        <li><strong>Retry in Mug Monitor:</strong> Open the app and connect. If it cannot find the mug, use the model-specific pairing instructions below. You can also toggle the phone's Bluetooth off and back on.</li>
+                        <li><strong>Forget and re-pair only if needed:</strong> In Android <strong>Settings &gt; Connected devices &gt; Bluetooth</strong>, find the mug and select <strong>Forget</strong> or <strong>Unpair</strong>. Put the mug in pairing mode and reconnect in Mug Monitor. Recheck Android wake-up setup afterward.</li>
+                    </ol>
+                    <p class="pt-2 text-sm italic">For automatic recovery, see Background Monitoring and Android wake-up below. Repeatedly resetting a mug is not necessary for ordinary reconnects.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    Do I need to keep the official app installed?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>The official Ember app does not need to run alongside Mug Monitor for everyday use. You may still need it for initial authorization on some mugs or firmware updates. If connections conflict, close the official app before reconnecting with Mug Monitor.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    The app says my mug is "Read Only".
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Some mugs need initial authorization through the official Ember app before third-party controls work. Connect successfully in the official app, then close it and reconnect in Mug Monitor. If controls are still unavailable, contact app support with your mug model and the exact message; do not keep factory-resetting the mug.</p>
+                </div>
+            </details>
+
+            <details id="pairing" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">How do I enter pairing mode? Is that the same as a reset?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p><strong>Pairing and resetting are different.</strong> Release the button as soon as the pairing indicator appears.</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Ember Mug / Mug 2 (ceramic):</strong> Hold the bottom power button for about 6-8 seconds, until the light blinks blue. See <a href="https://support.ember.com/en-US/ember-mug-how-to-pair-1757457">Ember's ceramic mug pairing guide</a>.</li>
+                        <li><strong>Travel Mug 2:</strong> Hold the bottom power button for about 5 seconds until the display says <strong>PAIR</strong>. See <a href="https://support.ember.com/en-US/travel-mug%C2%B2-how-to-pair-1757430">Ember's Travel Mug 2 pairing guide</a>.</li>
+                        <li><strong>Other models:</strong> Follow the <a href="https://ember.com/pages/instruction-manuals">instructions for your exact model</a>; button timing and indicators differ.</li>
+                    </ul>
+                    <p>A ceramic mug's factory reset uses a longer hold (about 15 seconds) and a red indicator. It clears the pairing state and requires re-pairing. Use <a href="https://support.ember.com/en-US/ember-mug-how-to-reset-1757480">Ember's reset instructions</a> only when simpler troubleshooting has failed. Do not apply ceramic-mug reset timing to a Travel Mug.</p>
+                    <p>A red light alone is not enough to diagnose a battery fault. If the mug will not power on, charge, or enter pairing mode, see Hardware Support below.</p>
+                </div>
+            </details>
+
+            <!-- Features & Background Tasks Category -->
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Background Tasks & Features</h2>
+
+            <details id="android-wake-up" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">How do I enable Automatic background reconnect? (Premium Feature)</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>On supported phones, Android can wake Mug Monitor and attempt to reconnect when your associated mug appears nearby, including after long idle periods. This is automatic recovery, not a guarantee of an uninterrupted or instant Bluetooth connection.</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Connect your mug in Mug Monitor first. Make sure you have Premium or an active trial.</li>
+                        <li>In Mug Monitor Settings, enable <strong>Background Monitoring and Wear OS</strong> and <strong>Automatic background reconnect (Premium Feature)</strong>.</li>
+                        <li>Tap <strong>Set up Android wake-up</strong>. If the mug is not found, put it in <a href="#pairing">pairing mode for its model</a>, then try setup again. Disconnect other phones that may be using it.</li>
+                        <li>Select your mug in Android's setup dialog and approve the requested association. Check the status in Mug Monitor Settings to confirm setup completed.</li>
+                    </ol>
+                    <p>The reconnect preference is enabled by default for eligible Premium/trial users, but <strong>the one-time Android setup still needs your approval</strong>. You normally do not need to forget an existing Bluetooth pairing first.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">Why is Android system wake-up unsupported, or why has it not reconnected?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>This wake-up feature requires <strong>Android 12 or later and the phone manufacturer's Companion Device support</strong>. Some older or unsupported phones cannot complete setup. Other available connection methods remain usable; unsupported wake-up does not mean the mug cannot connect manually.</p>
+                    <p>Check Bluetooth, mug power/range, permissions, Premium/trial status, and the setup status in Settings. Another connected phone can block access. Android background restrictions and whether the mug is advertising can delay detection.</p>
+                    <p><strong>Explicit Disconnect is respected:</strong> after you disconnect in the app, connect manually again or re-enable the mug's auto-connect option to resume automatic connections. Opening the app again is also necessary after a system Force stop. Ordinary out-of-range or idle disconnections are different from choosing Disconnect.</p>
+                    <p>Turning Automatic background reconnect off disables this recovery feature; it is separate from the Background Monitoring switch.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    App is stuck on "Empty", not updating, or notifications are delayed.
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>A stale status can result from a lost connection or Android restricting background work; it does not prove the mug is empty. First open Mug Monitor and check its connection state. If updates repeatedly stop only in the background, try <strong>Troubleshoot Disconnects</strong> in app Settings, or:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-2">
+                        <li>Go to your phone's <strong>Settings > Apps > Mug Monitor</strong>.</li>
+                        <li>Look for the <strong>Battery</strong> or <strong>App battery usage</strong> section.</li>
+                        <li>Change the setting from "Optimized" to <strong>"Unrestricted"</strong>.</li>
+                    </ul>
+                    <p class="mt-2 text-sm italic">Note: The exact naming of these menus can vary depending on your phone's manufacturer (Samsung, Google, OnePlus, etc.).</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    Can I hide the optional Idle notifications without disabling monitoring?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text space-y-4">
+                    <p>Yes. In Mug Monitor Settings, tap <strong>Turn Off Idle Notifications</strong> (or <strong>Idle notification settings</strong>) to open Android's controls. Alternatively:</p>
+                    <ol class="list-decimal pl-5 space-y-2">
+                        <li>Go to your phone's <strong>Settings > Apps > Mug Monitor</strong>.</li>
+                        <li>Tap on <strong>Notifications</strong>.</li>
+                        <li>Find and uncheck <strong>"Ember Service Idle"</strong>.</li>
+                    </ol>
+                    <p>Disable <strong>only Ember Service Idle</strong>, not all Mug Monitor notifications. Background monitoring can continue; active status and drink alerts use separate channels. Android may still show the service under active apps. Hiding a notification does not disable Android's background restrictions or guarantee the process stays alive.</p>
+
+                    <div class="mt-4 bg-gray-50 p-2 rounded-lg border border-gray-200 inline-block">
+                        <img src="EmberSerivceIdleOff.png" alt="Ember Service Idle Notification Setting" class="rounded-md shadow-sm max-w-full h-auto sm:max-w-sm object-cover">
+                    </div>
+
+                    <p class="mt-4 text-sm italic bg-brand-50 p-3 rounded-lg border border-brand-100 text-brand-900">
+                        <strong>Note:</strong> You will continue seeing the "Empty/Standby" status for approximately 30 minutes even with this setting turned off.
+                    </p>
+                </div>
+            </details>
+
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Temperature Alerts</h2>
+            <details id="ready-to-drink" class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">How does Ready to Drink work? (Premium Feature)</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Ready to Drink gives you an earlier cooling alert without changing the mug's heater target. It is <strong>off by default</strong>. In Settings, under <strong>Temperature Alerts</strong>, enable <strong>Ready to Drink alert (Premium Feature)</strong> and choose how far above target you want the alert.</p>
+                    <p>The default is <strong>5&deg;F above target</strong>, adjustable from 1-20&deg;F (with equivalent Celsius controls), capped at the app's mug maximum. For a <strong>132&deg;F target and +5&deg;F offset</strong>, the ready range is above 132&deg;F through 137&deg;F.</p>
+                    <p>The one-minute confirmation starts when the cooling drink enters that range at 137&deg;F. It must remain in the qualifying range for the minute; moving outside it cancels that pending alert. This helps avoid alerts from brief temperature readings while filling. An alert is not a guarantee that a drink is safe to sip.</p>
+                    <p>Enable <strong>Also notify when Perfect (Premium Feature)</strong> if you want a second alert at the target. Turning that off does not turn off Ready to Drink.</p>
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">Why did I not receive another Ready to Drink alert?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Alerts are limited to avoid repeated notifications as the temperature drifts. Ready to Drink has a <strong>10-minute cooldown</strong> and must also re-arm for a new drink, such as after an idle/refill state or the temperature rising sufficiently above the ready threshold. Simply waiting ten minutes does not generate another alert.</p>
+                    <p>Check Premium/trial access, Background Monitoring, the Ready to Drink switch, notification permissions, and a current mug connection. The drink must cool into and remain in the range for one minute. If the target is already at the app's mug maximum, no higher advance-alert range is available.</p>
+                </div>
+            </details>
+
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">
+                    How do I connect my Wear OS smartwatch?
+                </summary>
+                <div class="mt-4 text-gray-600 cursor-text">
+                    <p>Wear OS support requires Premium or an active trial. Install Mug Monitor from the Google Play Store on your watch (look under <strong>Apps on your phone</strong> or search for it). Enable <strong>Background Monitoring and Wear OS</strong> on the phone and connect the phone app to your mug. The watch receives its data through the phone; it is not a separate direct connection to the mug.</p>
+                    <p class="mt-2">If watch information is missing or stale, open both apps and check the phone-to-mug and phone-to-watch connections. The ongoing mug indicator can disappear when updates stop; it is not a permanently pinned watch-face icon.</p>
+                </div>
+            </details>
+
+            <h2 class="text-xl font-bold text-gray-900 mt-10 mb-4 border-b pb-2 border-gray-200">Premium &amp; Hardware Support</h2>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">What is free, and what happens after the trial?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Core foreground mug monitoring and controls remain free. Advanced features such as background monitoring, automatic background reconnect, Ready to Drink alerts, LED pulsing, and Wear OS support require Premium or an active <strong>7-day trial</strong>.</p>
+                    <p>When the trial expires without a Premium purchase, Premium features stop; the free core app remains available. Installing an update does not restart an expired trial.</p>
+                    <p>Android Premium is a <strong>one-time in-app purchase</strong>, not a recurring subscription. Confirm the current price in Google Play before purchasing.</p>
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">How do I restore Premium or request a refund?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Use the same Google Play account that purchased Premium, install/update Mug Monitor from Google Play, and reopen the app while online so it can check your purchase. If it is still locked, contact support with the app version and order reference, not payment-card details.</p>
+                    <p>There is no recurring Android subscription to cancel. For an eligible purchase, follow <a href="https://support.google.com/googleplay/answer/2479637">Google Play's refund instructions</a>. Eligibility depends on the store's policy; a refund is not guaranteed. Contact app support if you need help with the purchase.</p>
+                </div>
+            </details>
+            <details class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 group cursor-pointer">
+                <summary class="text-lg font-semibold text-gray-900 focus:outline-none">My mug will not charge or power on. Can Mug Monitor fix it?</summary>
+                <div class="mt-4 text-gray-600 space-y-4 cursor-text">
+                    <p>Mug Monitor is an independent third-party app, not Ember's hardware support team. It cannot repair a battery, charging coaster, or a mug that cannot power on or communicate over Bluetooth.</p>
+                    <p>For charging problems, unusual lights, replacement parts, or warranty questions, use <a href="https://support.ember.com/">official Ember support</a> and your model's instructions. Avoid assuming that every failure to pair is an app issue. For app controls, alerts, or background reconnect problems, contact Mug Monitor below.</p>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- Contact Support Footer -->
+        <div class="mt-16 bg-brand-50 rounded-2xl p-8 text-center border border-brand-100">
+            <h3 class="text-xl font-bold text-brand-900">Still need help?</h3>
+            <p class="mt-2 text-brand-700">If you've tried the steps above and are still having trouble, I'm here to help.</p>
+            <p class="mt-4 text-sm text-brand-600 font-medium">Please include your mug model, phone model, Android version, Mug Monitor version, exact error, and whether another phone is connected. Tell us whether it happens only in the background and what you have tried. A screenshot with personal information removed can help.</p>
+            <a href="mailto:support@cybazsolutions.com?subject=Mug%20Monitor%20Android%20Support" class="mt-6 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors shadow-sm">
+                Contact Support
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

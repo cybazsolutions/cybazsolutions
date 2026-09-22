@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.cybazsolutions.com/sitemap.xml
+
+Sitemap: https://mugmonitor.com/sitemap.xml
+

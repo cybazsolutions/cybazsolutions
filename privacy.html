@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Cybaz Solutions</title>
     <link rel="canonical" href="https://mugmonitor.com/privacy.html">
-    <meta name="description" content="Privacy Policy for Cybaz Solutions applications, including Bluetooth, Location, and optional Apple Health caffeine logging.">
+    <meta name="description" content="Privacy Policy for Cybaz Solutions applications, including Bluetooth, Apple Health caffeine logging, and automatic Live Activities.">
     <style>
         :root {
             --primary-color: #2563eb;
@@ -137,12 +137,12 @@
         <div class="card">
             <header>
                 <h1>Privacy Policy</h1>
-                <p class="last-updated">Last Updated: September 20, 2026</p>
+                <p class="last-updated">Last Updated: November 15, 2026</p>
             </header>
 
             <section>
                 <p>
-                    Cybaz Solutions built this application as a Free app. This SERVICE is provided by Cybaz Solutions at no cost and is intended for use as is.
+                    Cybaz Solutions provides this application with free features and optional paid Premium features. The service is intended for use as is.
                 </p>
                 <p>
                     This page is used to inform visitors regarding our policies with the collection, use, and disclosure of Personal Information if anyone decided to use our Service on either Android or iOS platforms.
@@ -187,24 +187,44 @@
             </section>
 
             <section>
+                <h2>Automatic Live Activities (iOS)</h2>
+                <p>
+                    Mug Monitor uses a Cloudflare-hosted relay and Apple Push Notification service to start and end Live Activities when the app is not open. When automatic Live Activities are enabled and available through Premium or an active trial, the app sends Apple-generated Live Activity tokens, the mug's display name, request identifiers, and operational timing information such as the start of an idle period and the selected timeout. Automatic Live Activities are enabled by default for eligible users unless a different choice has been saved.
+                </p>
+                <p>
+                    This information is used to operate Live Activities, schedule their ending, protect the service, and prevent duplicate or excessive requests. These relay requests do not include detailed temperature readings, battery readings, drink history, physical location, or Apple Health data. We do not use relay information for advertising, cross-app tracking, or sale to data brokers.
+                </p>
+                <h3>Storage and Retention</h3>
+                <p>
+                    The relay processes the mug's display name and push-to-start token without persisting their raw values in its database. A token needed to end a pending Live Activity is encrypted before storage and cleared when the pending operation is completed or canceled. Token hashes, request identifiers, revisions, and timing records are retained for scheduling and duplicate protection. Records older than seven days become eligible for cleanup. Cleanup occurs as requests are processed, so records may remain longer during periods without traffic.
+                </p>
+                <h3>Your Controls</h3>
+                <p>
+                    You can turn off Start Live Activities Automatically in Settings to stop new automatic-start requests. Turning it off also requests cancellation of known pending idle-ending operations; cancellation requires a working internet connection. Previously retained operational records remain subject to the retention process above. Muting automatic-start failure alerts changes notifications only and does not disable the relay feature.
+                </p>
+            </section>
+
+            <section>
                 <h2>Information Collection and Use</h2>
                 <p>
-                    For a better experience while using our Service, we may require you to provide us with certain personally identifiable information. The information that we request will be retained on your device and is not collected by us in any way.
+                    Mug settings, detailed mug sensor readings, and drink history are processed on your device. Automatic Live Activities use the off-device service described above. If you contact us for support, we use the information you choose to send to respond to your request.
                 </p>
                 <p>
-                    The app does use third-party services that may collect information used to identify you for the purpose of app stability and analytics.
+                    Apple, Google Play Services (on Android), and Cloudflare provide platform, delivery, hosting, and security services. Our public website is hosted using GitHub Pages behind Cloudflare. Connections to these services involve standard network information, such as an IP address, request time, and technical connection details. Providers process service traffic under their applicable privacy and security practices.
                 </p>
-                <p>Links to privacy policy of third-party service providers used by the app:</p>
+                <p>Privacy policies for these service providers:</p>
                 <ul>
                     <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
                     <li><a href="https://www.apple.com/legal/privacy/en-ww/" target="_blank" rel="noopener noreferrer">Apple Services</a></li>
+                    <li><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare</a></li>
+                    <li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
                 </ul>
             </section>
 
             <section>
-                <h2>Log Data</h2>
+                <h2>Diagnostics and Service Logs</h2>
                 <p>
-                    We want to inform you that whenever you use our Service, in a case of an error in the app we collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol ("IP") address, device name, operating system version, the configuration of the app when utilizing our Service, the time and date of your use of the Service, and other statistics.
+                    Diagnostic information may be stored locally on your device or shared with us if you choose to send it in a support request. The Live Activity relay does not write raw tokens or mug display names to application logs. Stored Cloudflare Workers application logs and traces are disabled for the relay. This does not mean that Cloudflare, Apple, or our website host retains no network, security, or operational information; their handling is governed by their applicable privacy and security practices.
                 </p>
             </section>
 
